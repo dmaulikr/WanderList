@@ -15,6 +15,10 @@
 		4F0A95BF1D73B95B0036CA39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */; };
 		4F0A95C21D73B95B0036CA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95C01D73B95B0036CA39 /* LaunchScreen.storyboard */; };
 		4F0A95CD1D73B95B0036CA39 /* WanderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */; };
+		4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */; };
+		4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703991D792C2E004AB9E7 /* Category.swift */; };
+		4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */; };
+		4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039B1D792C2E004AB9E7 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,10 @@
 		4F0A95C81D73B95B0036CA39 /* WanderListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderListTests.swift; sourceTree = "<group>"; };
 		4F0A95CE1D73B95B0036CA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F5703991D792C2E004AB9E7 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F57039B1D792C2E004AB9E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 		4F0A95B11D73B95B0036CA39 /* WanderList */ = {
 			isa = PBXGroup;
 			children = (
+				4F5703971D79137E004AB9E7 /* Model */,
 				4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */,
 				4F0A95B71D73B95B0036CA39 /* MasterViewController.swift */,
 				4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */,
@@ -88,7 +97,6 @@
 				4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */,
 				4F0A95C01D73B95B0036CA39 /* LaunchScreen.storyboard */,
 				4F0A95C31D73B95B0036CA39 /* Info.plist */,
-				4F0A95B41D73B95B0036CA39 /* WanderList.xcdatamodeld */,
 			);
 			path = WanderList;
 			sourceTree = "<group>";
@@ -100,6 +108,18 @@
 				4F0A95CE1D73B95B0036CA39 /* Info.plist */,
 			);
 			path = WanderListTests;
+			sourceTree = "<group>";
+		};
+		4F5703971D79137E004AB9E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */,
+				4F5703991D792C2E004AB9E7 /* Category.swift */,
+				4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */,
+				4F57039B1D792C2E004AB9E7 /* Reminder.swift */,
+				4F0A95B41D73B95B0036CA39 /* WanderList.xcdatamodeld */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +172,7 @@
 				TargetAttributes = {
 					4F0A95AE1D73B95B0036CA39 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = APNXQ4DTJ2;
 					};
 					4F0A95C71D73B95B0036CA39 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -205,8 +226,12 @@
 			files = (
 				4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */,
 				4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */,
+				4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */,
 				4F0A95B81D73B95B0036CA39 /* MasterViewController.swift in Sources */,
+				4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */,
 				4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */,
+				4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */,
+				4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WanderList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haoboji.WanderList;
@@ -348,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WanderList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haoboji.WanderList;
@@ -398,6 +425,7 @@
 				4F0A95D31D73B95B0036CA39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F0A95D41D73B95B0036CA39 /* Build configuration list for PBXNativeTarget "WanderListTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +434,7 @@
 				4F0A95D61D73B95B0036CA39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
