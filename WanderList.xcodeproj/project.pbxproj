@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */; };
 		4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B41D73B95B0036CA39 /* WanderList.xcdatamodeld */; };
-		4F0A95B81D73B95B0036CA39 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B71D73B95B0036CA39 /* MasterViewController.swift */; };
+		4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */; };
 		4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */; };
 		4F0A95BD1D73B95B0036CA39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BB1D73B95B0036CA39 /* Main.storyboard */; };
 		4F0A95BF1D73B95B0036CA39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */; };
@@ -19,6 +19,9 @@
 		4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703991D792C2E004AB9E7 /* Category.swift */; };
 		4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */; };
 		4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039B1D792C2E004AB9E7 /* Reminder.swift */; };
+		4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A11D795627004AB9E7 /* CategoryController.swift */; };
+		66ED1BCC75D11EB35ECD0F41 /* Pods_WanderList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DCB6F37398424826260A40 /* Pods_WanderList.framework */; };
+		71576D6C490C4DB600CB8344 /* Pods_WanderListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767D7500E7DA8EF2FE34F38 /* Pods_WanderListTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3228126A46AF5AC63DB8A000 /* Pods-WanderList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderList.release.xcconfig"; path = "Pods/Target Support Files/Pods-WanderList/Pods-WanderList.release.xcconfig"; sourceTree = "<group>"; };
+		3767D7500E7DA8EF2FE34F38 /* Pods_WanderListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WanderListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0A95AF1D73B95B0036CA39 /* WanderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WanderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F0A95B51D73B95B0036CA39 /* WanderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WanderList.xcdatamodel; sourceTree = "<group>"; };
-		4F0A95B71D73B95B0036CA39 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCategoryMasterController.swift; sourceTree = "<group>"; };
 		4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4F0A95BC1D73B95B0036CA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +53,11 @@
 		4F5703991D792C2E004AB9E7 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F57039B1D792C2E004AB9E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		4F5703A11D795627004AB9E7 /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		62DCB6F37398424826260A40 /* Pods_WanderList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WanderList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A695D3F8BC9BFAE44E06F8A /* Pods-WanderListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WanderListTests/Pods-WanderListTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D1C7D2596FA4A75FB64F6CF /* Pods-WanderList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WanderList/Pods-WanderList.debug.xcconfig"; sourceTree = "<group>"; };
+		A50B62D34666FB57F46FE17C /* Pods-WanderListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WanderListTests/Pods-WanderListTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66ED1BCC75D11EB35ECD0F41 /* Pods_WanderList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,18 +73,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71576D6C490C4DB600CB8344 /* Pods_WanderListTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		166C5845852F658E46ABE86A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8D1C7D2596FA4A75FB64F6CF /* Pods-WanderList.debug.xcconfig */,
+				3228126A46AF5AC63DB8A000 /* Pods-WanderList.release.xcconfig */,
+				7A695D3F8BC9BFAE44E06F8A /* Pods-WanderListTests.debug.xcconfig */,
+				A50B62D34666FB57F46FE17C /* Pods-WanderListTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4F0A95A61D73B95B0036CA39 = {
 			isa = PBXGroup;
 			children = (
 				4F0A95B11D73B95B0036CA39 /* WanderList */,
 				4F0A95CB1D73B95B0036CA39 /* WanderListTests */,
 				4F0A95B01D73B95B0036CA39 /* Products */,
+				166C5845852F658E46ABE86A /* Pods */,
+				9FB4ED2ED69F47513FA4243E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,9 +114,9 @@
 		4F0A95B11D73B95B0036CA39 /* WanderList */ = {
 			isa = PBXGroup;
 			children = (
+				4F5703A01D792C88004AB9E7 /* Controller */,
 				4F5703971D79137E004AB9E7 /* Model */,
 				4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */,
-				4F0A95B71D73B95B0036CA39 /* MasterViewController.swift */,
 				4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */,
 				4F0A95BB1D73B95B0036CA39 /* Main.storyboard */,
 				4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */,
@@ -122,6 +147,24 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		4F5703A01D792C88004AB9E7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */,
+				4F5703A11D795627004AB9E7 /* CategoryController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9FB4ED2ED69F47513FA4243E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62DCB6F37398424826260A40 /* Pods_WanderList.framework */,
+				3767D7500E7DA8EF2FE34F38 /* Pods_WanderListTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F0A95D11D73B95B0036CA39 /* Build configuration list for PBXNativeTarget "WanderList" */;
 			buildPhases = (
+				DB11A194A2788C178FCC0508 /* [CP] Check Pods Manifest.lock */,
 				4F0A95AB1D73B95B0036CA39 /* Sources */,
 				4F0A95AC1D73B95B0036CA39 /* Frameworks */,
 				4F0A95AD1D73B95B0036CA39 /* Resources */,
+				66B491FA61FEC00E8FD98BE8 /* [CP] Embed Pods Frameworks */,
+				420FE6DD872DDEE990BFE7D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -146,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F0A95D41D73B95B0036CA39 /* Build configuration list for PBXNativeTarget "WanderListTests" */;
 			buildPhases = (
+				4CBE5929F931EFEE6C87056C /* [CP] Check Pods Manifest.lock */,
 				4F0A95C41D73B95B0036CA39 /* Sources */,
 				4F0A95C51D73B95B0036CA39 /* Frameworks */,
 				4F0A95C61D73B95B0036CA39 /* Resources */,
+				8ED89C36A3A689EE4DF977DA /* [CP] Embed Pods Frameworks */,
+				942AC2358570BDA24BB7130D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,6 +268,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		420FE6DD872DDEE990BFE7D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WanderList/Pods-WanderList-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CBE5929F931EFEE6C87056C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66B491FA61FEC00E8FD98BE8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WanderList/Pods-WanderList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ED89C36A3A689EE4DF977DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WanderListTests/Pods-WanderListTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		942AC2358570BDA24BB7130D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WanderListTests/Pods-WanderListTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB11A194A2788C178FCC0508 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4F0A95AB1D73B95B0036CA39 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -227,7 +369,8 @@
 				4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */,
 				4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */,
 				4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */,
-				4F0A95B81D73B95B0036CA39 /* MasterViewController.swift in Sources */,
+				4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */,
+				4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */,
 				4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */,
 				4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */,
 				4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */,
@@ -360,6 +503,7 @@
 		};
 		4F0A95D21D73B95B0036CA39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D1C7D2596FA4A75FB64F6CF /* Pods-WanderList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -372,6 +516,7 @@
 		};
 		4F0A95D31D73B95B0036CA39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3228126A46AF5AC63DB8A000 /* Pods-WanderList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -384,6 +529,7 @@
 		};
 		4F0A95D51D73B95B0036CA39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A695D3F8BC9BFAE44E06F8A /* Pods-WanderListTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WanderListTests/Info.plist;
@@ -396,6 +542,7 @@
 		};
 		4F0A95D61D73B95B0036CA39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A50B62D34666FB57F46FE17C /* Pods-WanderListTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WanderListTests/Info.plist;
