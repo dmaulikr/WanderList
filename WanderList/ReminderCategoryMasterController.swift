@@ -12,12 +12,10 @@ import CoreData
 class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var managedObjectContext: NSManagedObjectContext? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
@@ -32,26 +30,6 @@ class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsC
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func insertNewObject(sender: AnyObject) {
-        let context = self.fetchedResultsController.managedObjectContext
-        let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-
-        // Save the context.
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            // print("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
     }
 
     // MARK: - Segues
@@ -91,6 +69,19 @@ class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsC
         return true
     }
 
+    override func tableView(tableView: UITableView,
+        editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+            let edit = UITableViewRowAction(style: .Destructive, title: "Edit") { action, index in
+                print("Edit button tapped")
+            }
+            edit.backgroundColor = UIColor.blueColor()
+            let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
+                print("Delete button tapped")
+            }
+            delete.backgroundColor = UIColor.redColor()
+            return [delete, edit]
+    }
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
@@ -111,6 +102,10 @@ class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsC
         cell.textLabel!.text = object.valueForKey("timeStamp")!.description
     }
 
+    func editCell() {
+
+    }
+
     // MARK: - Fetched results controller
 
     var fetchedResultsController: NSFetchedResultsController {
@@ -120,7 +115,7 @@ class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsC
 
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: DataManager.shared.moc!)
         fetchRequest.entity = entity
 
         // Set the batch size to a suitable number.
@@ -133,7 +128,7 @@ class ReminderCategoryMasterController: UITableViewController, NSFetchedResultsC
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.moc!, sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
 
