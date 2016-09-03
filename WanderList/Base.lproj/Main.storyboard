@@ -163,13 +163,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yv5-Jh-Pkd">
-                                                    <rect key="frame" x="15" y="12" width="570" height="20"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter category title here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yv5-Jh-Pkd">
+                                                    <rect key="frame" x="15" y="10" width="570" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Yv5-Jh-Pkd" firstAttribute="top" secondItem="Wqx-HP-tcD" secondAttribute="topMargin" id="E1e-wR-ndv"/>
                                                 <constraint firstItem="Yv5-Jh-Pkd" firstAttribute="leading" secondItem="Wqx-HP-tcD" secondAttribute="leadingMargin" id="EkH-rT-AeE"/>
                                                 <constraint firstItem="Yv5-Jh-Pkd" firstAttribute="centerY" secondItem="Wqx-HP-tcD" secondAttribute="centerY" id="aXA-sm-wUB"/>
                                                 <constraint firstItem="Yv5-Jh-Pkd" firstAttribute="trailing" secondItem="Wqx-HP-tcD" secondAttribute="trailingMargin" id="yCn-jO-Q6o"/>
@@ -201,7 +202,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="03e-Au-pvI" kind="show" id="wbe-Sb-yww"/>
+                                            <segue destination="03e-Au-pvI" kind="show" identifier="colorSegue" id="wbe-Sb-yww"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -256,6 +257,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Uxi-HM-ewg" kind="show" identifier="mapSegue" id="ROA-oO-5dk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZLq-UP-a9u" detailTextLabel="PZ2-eE-oZE" style="IBUITableViewCellStyleValue1" id="yrU-UI-Wz6" userLabel="radiusCell">
                                         <rect key="frame" x="0.0" y="369.5" width="600" height="44"/>
@@ -281,7 +285,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="tYw-Bc-4Ij" kind="show" id="dve-4n-2VH"/>
+                                            <segue destination="tYw-Bc-4Ij" kind="show" identifier="radiusSegue" id="dve-4n-2VH"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -313,6 +317,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewp-ga-it2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2337" y="-1508"/>
+        </scene>
+        <!--Map Pick Controller-->
+        <scene sceneID="1W2-Hs-TQR">
+            <objects>
+                <viewController id="Uxi-HM-ewg" customClass="MapPickController" customModule="WanderList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HId-Mg-SYM"/>
+                        <viewControllerLayoutGuide type="bottom" id="WBi-dy-cPw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dUO-qI-Ss8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u4B-OM-FYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3124" y="-3063"/>
         </scene>
         <!--Notification radius-->
         <scene sceneID="vkc-UC-0bu">
@@ -351,10 +373,10 @@
             </objects>
             <point key="canvasLocation" x="3124" y="-2306"/>
         </scene>
-        <!--Color Select Controller-->
+        <!--Color Pick Controller-->
         <scene sceneID="7Uv-JN-BZs">
             <objects>
-                <tableViewController id="03e-Au-pvI" customClass="ColorSelectController" customModule="WanderList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="03e-Au-pvI" customClass="ColorPickController" customModule="WanderList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="zpe-aF-moe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

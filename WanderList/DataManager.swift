@@ -30,8 +30,7 @@ class DataManager: NSObject {
     }
 
     // Mark: Color Pick
-    var currentColorIndex: Int = 0
-    lazy var colorsUI: [UIColor] = {
+    lazy var colors: [UIColor] = {
         return [UIColor.blackColor(),
             UIColor.redColor(),
             UIColor.greenColor(),
@@ -48,7 +47,6 @@ class DataManager: NSObject {
     }()
 
     // Mark: Notification Radius
-    var currentRadiusIndex: Int = 0
     lazy var radius: [Int] = {
         return [50, 250, 1000]
     }()

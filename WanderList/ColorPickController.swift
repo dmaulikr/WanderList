@@ -8,14 +8,21 @@
 
 import UIKit
 
-class ColorSelectController: UITableViewController {
+protocol ColorPickDelegate {
+    func didPickColor(controller: ColorPickController)
+}
 
-    let colorsUI = DataManager.shared.colorsUI
+class ColorPickController: UITableViewController {
+
+    var delegate: ColorPickDelegate?
+
+    let colorsUI = DataManager.shared.colors
     let colorsText = DataManager.shared.colorsText
+    var currentColorIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Select a color"
+        self.title = "Pick a Color"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,6 +53,11 @@ class ColorSelectController: UITableViewController {
         cell.imageView?.image = cell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         cell.imageView?.tintColor = colorsUI[indexPath.row]
         cell.textLabel?.text = colorsText[indexPath.row]
+        if (indexPath.row == currentColorIndex!) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
         return cell
     }
 
@@ -55,8 +67,8 @@ class ColorSelectController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        DataManager.shared.currentColorIndex = indexPath.row
-        self.navigationController?.popViewControllerAnimated(true)
+        currentColorIndex = indexPath.row
+        delegate?.didPickColor(self)
     }
 
     /*

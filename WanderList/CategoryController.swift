@@ -7,34 +7,52 @@
 //
 
 import UIKit
-class CategoryController: UITableViewController {
+class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDelegate {
 
     @IBOutlet var titleInput: UITextField!
     @IBOutlet var colorCell: UITableViewCell!
     @IBOutlet var radiusCell: UITableViewCell!
 
+    // Constant variable
+    let colors = DataManager.shared.colors
+    let colorsText = DataManager.shared.colorsText
+    let radius = DataManager.shared.radius
+    let radiusText = DataManager.shared.radiusText
+
+    // For category settings
+    var currentColorIndex: Int = 0
+    var currentRadiusIndex: Int = 0
+
     override func viewDidLoad() {
+        // init color
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        colorCell.imageView?.image = colorCell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        colorCell.imageView?.tintColor = colors[currentColorIndex]
+        colorCell.textLabel?.text = colorsText[currentColorIndex]
+        // init radius
+        radiusCell.detailTextLabel?.text = radiusText[currentRadiusIndex]
     }
 
     override func viewDidAppear(animated: Bool) {
-        titleInput.becomeFirstResponder()
+        // titleInput.becomeFirstResponder()
     }
 
     override func viewWillAppear(animated: Bool) {
-        // Load color config
-        colorCell.imageView?.image = colorCell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        colorCell.imageView?.tintColor = DataManager.shared.colorsUI[DataManager.shared.currentColorIndex]
-        colorCell.textLabel?.text = DataManager.shared.colorsText[DataManager.shared.currentColorIndex]
-        // Load radius config
-        radiusCell.detailTextLabel?.text = DataManager.shared.radiusText[DataManager.shared.currentRadiusIndex]
         super.viewWillAppear(animated)
+    }
+
+    func didPickColor(controller: ColorPickController) {
+        // Load color config
+        currentColorIndex = controller.currentColorIndex!
+        colorCell.imageView?.tintColor = colors[currentColorIndex]
+        colorCell.textLabel?.text = colorsText[currentColorIndex]
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    func didPickRadius(controller: RadiusPickController) {
+        // Load radius config
+        radiusCell.detailTextLabel?.text = radiusText[controller.currentRadiusIndex!]
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     @IBAction func save(sender: UIBarButtonItem) {
@@ -90,6 +108,31 @@ class CategoryController: UITableViewController {
         }
     }
 
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == nil) {
+            return
+        }
+        switch segue.identifier! {
+        case "colorSegue":
+            let controller = segue.destinationViewController as! ColorPickController
+            controller.currentColorIndex = self.currentColorIndex
+            controller.delegate = self
+            break
+        case "radiusSegue":
+            let controller = segue.destinationViewController as! RadiusPickController
+            controller.currentRadiusIndex = self.currentRadiusIndex
+            controller.delegate = self
+            break
+        default:
+            break
+        }
+    }
+
     /*
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -132,16 +175,6 @@ class CategoryController: UITableViewController {
      override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
      return true
-     }
-     */
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
      }
      */
 

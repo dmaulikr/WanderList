@@ -21,8 +21,9 @@
 		4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039B1D792C2E004AB9E7 /* Reminder.swift */; };
 		4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A11D795627004AB9E7 /* CategoryController.swift */; };
 		4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A41D798BAF004AB9E7 /* DataManager.swift */; };
-		4FE622441D7A5B6000EBC90F /* ColorSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622431D7A5B6000EBC90F /* ColorSelectController.swift */; };
+		4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622431D7A5B6000EBC90F /* ColorPickController.swift */; };
 		4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */; };
+		4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622481D7A70D300EBC90F /* MapPickController.swift */; };
 		66ED1BCC75D11EB35ECD0F41 /* Pods_WanderList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DCB6F37398424826260A40 /* Pods_WanderList.framework */; };
 		71576D6C490C4DB600CB8344 /* Pods_WanderListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767D7500E7DA8EF2FE34F38 /* Pods_WanderListTests.framework */; };
 /* End PBXBuildFile section */
@@ -58,8 +59,9 @@
 		4F57039B1D792C2E004AB9E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		4F5703A11D795627004AB9E7 /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		4F5703A41D798BAF004AB9E7 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		4FE622431D7A5B6000EBC90F /* ColorSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectController.swift; sourceTree = "<group>"; };
+		4FE622431D7A5B6000EBC90F /* ColorPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickController.swift; sourceTree = "<group>"; };
 		4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusPickController.swift; sourceTree = "<group>"; };
+		4FE622481D7A70D300EBC90F /* MapPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPickController.swift; sourceTree = "<group>"; };
 		62DCB6F37398424826260A40 /* Pods_WanderList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WanderList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A695D3F8BC9BFAE44E06F8A /* Pods-WanderListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WanderListTests/Pods-WanderListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1C7D2596FA4A75FB64F6CF /* Pods-WanderList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanderList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WanderList/Pods-WanderList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,8 +161,9 @@
 			children = (
 				4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */,
 				4F5703A11D795627004AB9E7 /* CategoryController.swift */,
-				4FE622431D7A5B6000EBC90F /* ColorSelectController.swift */,
+				4FE622431D7A5B6000EBC90F /* ColorPickController.swift */,
 				4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */,
+				4FE622481D7A70D300EBC90F /* MapPickController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -378,9 +381,10 @@
 				4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */,
 				4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */,
 				4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */,
+				4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */,
 				4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */,
 				4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */,
-				4FE622441D7A5B6000EBC90F /* ColorSelectController.swift in Sources */,
+				4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */,
 				4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */,
 				4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */,
 				4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */,

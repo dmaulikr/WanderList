@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol RadiusPickDelegate {
+    func didPickRadius(controller: RadiusPickController)
+}
+
 class RadiusPickController: UITableViewController {
+
+    var delegate: RadiusPickDelegate?
+    var currentRadiusIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +51,8 @@ class RadiusPickController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        DataManager.shared.currentRadiusIndex = indexPath.row
-        self.navigationController?.popViewControllerAnimated(true)
+        currentRadiusIndex = indexPath.row
+        delegate?.didPickRadius(self)
     }
 
     /*
