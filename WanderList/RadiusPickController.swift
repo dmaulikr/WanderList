@@ -39,13 +39,13 @@ class RadiusPickController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.shared.radiusText.count
+        return Config.radiusText.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("radiusCell", forIndexPath: indexPath)
         // Configure the cell...
-        cell.textLabel?.text = DataManager.shared.radiusText[indexPath.row]
+        cell.textLabel?.text = Config.radiusText[indexPath.row]
         return cell
     }
 

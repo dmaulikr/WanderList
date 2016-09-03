@@ -29,28 +29,5 @@ class DataManager: NSObject {
         }
     }
 
-    // Mark: Color Pick
-    lazy var colors: [UIColor] = {
-        return [UIColor.blackColor(),
-            UIColor.redColor(),
-            UIColor.greenColor(),
-            UIColor.blueColor(),
-            UIColor.cyanColor(),
-            UIColor.yellowColor(),
-            UIColor.magentaColor(),
-            UIColor.orangeColor(),
-            UIColor.purpleColor(),
-            UIColor.brownColor()]
-    }()
-    lazy var colorsText: [String] = {
-        return ["Black", "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta", "Orange", "Purple", "Brown"]
-    }()
 
-    // Mark: Notification Radius
-    lazy var radius: [Int] = {
-        return [50, 250, 1000]
-    }()
-    lazy var radiusText: [String] = {
-        return ["50 metres", "250 metres", "1 kilometer"]
-    }()
 }

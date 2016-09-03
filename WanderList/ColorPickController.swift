@@ -15,9 +15,6 @@ protocol ColorPickDelegate {
 class ColorPickController: UITableViewController {
 
     var delegate: ColorPickDelegate?
-
-    let colorsUI = DataManager.shared.colors
-    let colorsText = DataManager.shared.colorsText
     var currentColorIndex: Int?
 
     override func viewDidLoad() {
@@ -44,15 +41,15 @@ class ColorPickController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return colorsUI.count
+        return Config.colors.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("colorCell", forIndexPath: indexPath)
         // Configure the cell...
         cell.imageView?.image = cell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        cell.imageView?.tintColor = colorsUI[indexPath.row]
-        cell.textLabel?.text = colorsText[indexPath.row]
+        cell.imageView?.tintColor = Config.colors[indexPath.row]
+        cell.textLabel?.text = Config.colorsText[indexPath.row]
         if (indexPath.row == currentColorIndex!) {
             cell.accessoryType = .Checkmark
         } else {

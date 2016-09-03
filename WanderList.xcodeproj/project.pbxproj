@@ -21,6 +21,8 @@
 		4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039B1D792C2E004AB9E7 /* Reminder.swift */; };
 		4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A11D795627004AB9E7 /* CategoryController.swift */; };
 		4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A41D798BAF004AB9E7 /* DataManager.swift */; };
+		4F9F562E1D7A86950022E12C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F562D1D7A86950022E12C /* LocationManager.swift */; };
+		4F9F56301D7A88490022E12C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F562F1D7A88490022E12C /* Config.swift */; };
 		4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622431D7A5B6000EBC90F /* ColorPickController.swift */; };
 		4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */; };
 		4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622481D7A70D300EBC90F /* MapPickController.swift */; };
@@ -59,6 +61,8 @@
 		4F57039B1D792C2E004AB9E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		4F5703A11D795627004AB9E7 /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		4F5703A41D798BAF004AB9E7 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4F9F562D1D7A86950022E12C /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4F9F562F1D7A88490022E12C /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4FE622431D7A5B6000EBC90F /* ColorPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickController.swift; sourceTree = "<group>"; };
 		4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusPickController.swift; sourceTree = "<group>"; };
 		4FE622481D7A70D300EBC90F /* MapPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPickController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		4F0A95B11D73B95B0036CA39 /* WanderList */ = {
 			isa = PBXGroup;
 			children = (
+				4F9F562C1D7A86660022E12C /* Common */,
 				4F5703A01D792C88004AB9E7 /* Controller */,
 				4F5703971D79137E004AB9E7 /* Model */,
 				4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */,
@@ -146,7 +151,6 @@
 		4F5703971D79137E004AB9E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F5703A41D798BAF004AB9E7 /* DataManager.swift */,
 				4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */,
 				4F5703991D792C2E004AB9E7 /* Category.swift */,
 				4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */,
@@ -166,6 +170,16 @@
 				4FE622481D7A70D300EBC90F /* MapPickController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		4F9F562C1D7A86660022E12C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4F9F562D1D7A86950022E12C /* LocationManager.swift */,
+				4F5703A41D798BAF004AB9E7 /* DataManager.swift */,
+				4F9F562F1D7A88490022E12C /* Config.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		9FB4ED2ED69F47513FA4243E /* Frameworks */ = {
@@ -380,6 +394,7 @@
 			files = (
 				4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */,
 				4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */,
+				4F9F56301D7A88490022E12C /* Config.swift in Sources */,
 				4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */,
 				4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */,
 				4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */,
@@ -388,6 +403,7 @@
 				4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */,
 				4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */,
 				4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */,
+				4F9F562E1D7A86950022E12C /* LocationManager.swift in Sources */,
 				4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */,
 				4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */,
 				4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */,

@@ -20,9 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
-
         // Core data context
         DataManager.shared.moc = self.managedObjectContext
+        // Start location tracking
+        LocationManager.shared.start()
         return true
     }
 

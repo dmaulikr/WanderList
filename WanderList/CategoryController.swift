@@ -13,12 +13,6 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     @IBOutlet var colorCell: UITableViewCell!
     @IBOutlet var radiusCell: UITableViewCell!
 
-    // Constant variable
-    let colors = DataManager.shared.colors
-    let colorsText = DataManager.shared.colorsText
-    let radius = DataManager.shared.radius
-    let radiusText = DataManager.shared.radiusText
-
     // For category settings
     var currentColorIndex: Int = 0
     var currentRadiusIndex: Int = 0
@@ -27,10 +21,10 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         // init color
         super.viewDidLoad()
         colorCell.imageView?.image = colorCell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        colorCell.imageView?.tintColor = colors[currentColorIndex]
-        colorCell.textLabel?.text = colorsText[currentColorIndex]
+        colorCell.imageView?.tintColor = Config.colors[currentColorIndex]
+        colorCell.textLabel?.text = Config.colorsText[currentColorIndex]
         // init radius
-        radiusCell.detailTextLabel?.text = radiusText[currentRadiusIndex]
+        radiusCell.detailTextLabel?.text = Config.radiusText[currentRadiusIndex]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -44,14 +38,14 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     func didPickColor(controller: ColorPickController) {
         // Load color config
         currentColorIndex = controller.currentColorIndex!
-        colorCell.imageView?.tintColor = colors[currentColorIndex]
-        colorCell.textLabel?.text = colorsText[currentColorIndex]
+        colorCell.imageView?.tintColor = Config.colors[currentColorIndex]
+        colorCell.textLabel?.text = Config.colorsText[currentColorIndex]
         self.navigationController?.popViewControllerAnimated(true)
     }
 
     func didPickRadius(controller: RadiusPickController) {
         // Load radius config
-        radiusCell.detailTextLabel?.text = radiusText[controller.currentRadiusIndex!]
+        radiusCell.detailTextLabel?.text = Config.radiusText[controller.currentRadiusIndex!]
         self.navigationController?.popViewControllerAnimated(true)
     }
 
