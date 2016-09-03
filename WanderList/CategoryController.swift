@@ -20,6 +20,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     override func viewDidLoad() {
         // init color
         super.viewDidLoad()
+        self.title = "New"
         colorCell.imageView?.image = colorCell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         colorCell.imageView?.tintColor = Config.colors[currentColorIndex]
         colorCell.textLabel?.text = Config.colorsText[currentColorIndex]

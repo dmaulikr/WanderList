@@ -23,6 +23,7 @@
 		4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A41D798BAF004AB9E7 /* DataManager.swift */; };
 		4F9F562E1D7A86950022E12C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F562D1D7A86950022E12C /* LocationManager.swift */; };
 		4F9F56301D7A88490022E12C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F562F1D7A88490022E12C /* Config.swift */; };
+		4F9F56321D7A95520022E12C /* LocationSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F56311D7A95520022E12C /* LocationSearchTableController.swift */; };
 		4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622431D7A5B6000EBC90F /* ColorPickController.swift */; };
 		4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */; };
 		4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622481D7A70D300EBC90F /* MapPickController.swift */; };
@@ -63,6 +64,7 @@
 		4F5703A41D798BAF004AB9E7 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		4F9F562D1D7A86950022E12C /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4F9F562F1D7A88490022E12C /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4F9F56311D7A95520022E12C /* LocationSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableController.swift; sourceTree = "<group>"; };
 		4FE622431D7A5B6000EBC90F /* ColorPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickController.swift; sourceTree = "<group>"; };
 		4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusPickController.swift; sourceTree = "<group>"; };
 		4FE622481D7A70D300EBC90F /* MapPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPickController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				4FE622431D7A5B6000EBC90F /* ColorPickController.swift */,
 				4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */,
 				4FE622481D7A70D300EBC90F /* MapPickController.swift */,
+				4F9F56311D7A95520022E12C /* LocationSearchTableController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FE622461D7A6A3D00EBC90F /* RadiusPickController.swift in Sources */,
+				4F9F56321D7A95520022E12C /* LocationSearchTableController.swift in Sources */,
 				4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */,
 				4F9F56301D7A88490022E12C /* Config.swift in Sources */,
 				4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */,
