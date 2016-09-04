@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class DataManager: NSObject {
 
@@ -29,5 +30,16 @@ class DataManager: NSObject {
         }
     }
 
-
+    func insertCategory(title: String, color: Int, address: String, latitude: CLLocationDegrees, longitute: CLLocationDegrees, notificationRadius: Int) {
+        // Create a reminder
+        let newCategory: Category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: self.moc!) as? Category)!
+        newCategory.title = title
+        newCategory.color = color
+        newCategory.order = 0
+        newCategory.address = address
+        newCategory.latitude = latitude
+        newCategory.longitude = longitute
+        newCategory.notificationRadius = notificationRadius
+        saveContext()
+    }
 }

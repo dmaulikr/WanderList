@@ -10,7 +10,7 @@ import UIKit
 
 class Config: NSObject {
 
-    // Mark: Color Pick
+    // Mark: Category Color
     static let colors: [UIColor] = [
         UIColor.blackColor(),
         UIColor.redColor(),

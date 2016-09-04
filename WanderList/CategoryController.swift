@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDelegate, LocationPickDelegate {
 
@@ -40,6 +41,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         super.viewWillAppear(animated)
     }
 
+    // save picked color
     func didPickColor(controller: ColorPickController) {
         // Load color config
         currentColorIndex = controller.currentColorIndex!
@@ -48,23 +50,36 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    // save picked radius
     func didPickRadius(controller: RadiusPickController) {
         // Load radius config
         radiusCell.detailTextLabel?.text = Config.radiusText[controller.currentRadiusIndex!]
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    // save picked location
     func didPickLocation(controller: MapPickController) {
         self.currentPickedLocation = controller.currentPickedLocation
         locationCell.detailTextLabel?.text = currentPickedLocation!.subtitle
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    // save category and close modal
     @IBAction func save(sender: UIBarButtonItem) {
-
+        // Create a reminder
+        let newCategory: Category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: DataManager.shared.moc!) as? Category)!
+        newCategory.title = titleInput.text
+        newCategory.color = currentColorIndex
+        newCategory.order = 99999
+        newCategory.address = currentPickedLocation?.subtitle
+        newCategory.latitude = currentPickedLocation?.coordinate.latitude
+        newCategory.longitude = currentPickedLocation?.coordinate.longitude
+        newCategory.notificationRadius = Config.radius[currentRadiusIndex]
+        DataManager.shared.saveContext()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    // close modal
     @IBAction func cancel(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
