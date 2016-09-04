@@ -15,7 +15,7 @@ protocol CategoryListDelegate {
 
 class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: ReminderCategoryDetailController? = nil
     var categories: NSMutableArray = NSMutableArray()
 
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         // Do any additional setup after loading the view, typically from a nib.
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
+            self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? ReminderCategoryDetailController
         }
         // Table edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -67,9 +67,8 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             break
         case "showDetail":
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                // let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                // controller.detailItem = object
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ReminderCategoryDetailController
+                controller.category = categories[indexPath.row] as? Category
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -135,13 +134,4 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         DataManager.shared.saveContext()
     }
 }
-
-/*
- // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-
- func controllerDidChangeContent(controller: NSFetchedResultsController) {
- // In the simplest, most efficient, case, reload the table view.
- self.tableView.reloadData()
- }
- */
 

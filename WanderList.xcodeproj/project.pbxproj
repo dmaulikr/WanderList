@@ -10,11 +10,12 @@
 		4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */; };
 		4F0A95B61D73B95B0036CA39 /* WanderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B41D73B95B0036CA39 /* WanderList.xcdatamodeld */; };
 		4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */; };
-		4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */; };
 		4F0A95BD1D73B95B0036CA39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BB1D73B95B0036CA39 /* Main.storyboard */; };
 		4F0A95BF1D73B95B0036CA39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */; };
 		4F0A95C21D73B95B0036CA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95C01D73B95B0036CA39 /* LaunchScreen.storyboard */; };
 		4F0A95CD1D73B95B0036CA39 /* WanderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */; };
+		4F2DDB9E1D7C30240001395F /* ReminderCategoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DDB9D1D7C30240001395F /* ReminderCategoryDetailController.swift */; };
+		4F2DDBA01D7C3EEF0001395F /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DDB9F1D7C3EEF0001395F /* ReminderController.swift */; };
 		4F3370C21D7BADA6009132EF /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3370C01D7BADA6009132EF /* Category+CoreDataProperties.swift */; };
 		4F3370C31D7BADA6009132EF /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3370C11D7BADA6009132EF /* Reminder+CoreDataProperties.swift */; };
 		4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703991D792C2E004AB9E7 /* Category.swift */; };
@@ -48,7 +49,6 @@
 		4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F0A95B51D73B95B0036CA39 /* WanderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WanderList.xcdatamodel; sourceTree = "<group>"; };
 		4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCategoryMasterController.swift; sourceTree = "<group>"; };
-		4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4F0A95BC1D73B95B0036CA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F0A95C11D73B95B0036CA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +56,8 @@
 		4F0A95C81D73B95B0036CA39 /* WanderListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderListTests.swift; sourceTree = "<group>"; };
 		4F0A95CE1D73B95B0036CA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F2DDB9D1D7C30240001395F /* ReminderCategoryDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCategoryDetailController.swift; sourceTree = "<group>"; };
+		4F2DDB9F1D7C3EEF0001395F /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		4F3370C01D7BADA6009132EF /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F3370C11D7BADA6009132EF /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F5703991D792C2E004AB9E7 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -132,7 +134,6 @@
 				4F5703A01D792C88004AB9E7 /* Controller */,
 				4F5703971D79137E004AB9E7 /* Model */,
 				4F0A95B21D73B95B0036CA39 /* AppDelegate.swift */,
-				4F0A95B91D73B95B0036CA39 /* DetailViewController.swift */,
 				4F0A95BB1D73B95B0036CA39 /* Main.storyboard */,
 				4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */,
 				4F0A95C01D73B95B0036CA39 /* LaunchScreen.storyboard */,
@@ -166,11 +167,13 @@
 			isa = PBXGroup;
 			children = (
 				4F0A95B71D73B95B0036CA39 /* ReminderCategoryMasterController.swift */,
+				4F2DDB9D1D7C30240001395F /* ReminderCategoryDetailController.swift */,
 				4F5703A11D795627004AB9E7 /* CategoryController.swift */,
 				4FE622431D7A5B6000EBC90F /* ColorPickController.swift */,
 				4FE622451D7A6A3D00EBC90F /* RadiusPickController.swift */,
 				4FE622481D7A70D300EBC90F /* MapPickController.swift */,
 				4F9F56311D7A95520022E12C /* LocationSearchTableController.swift */,
+				4F2DDB9F1D7C3EEF0001395F /* ReminderController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -407,8 +410,9 @@
 				4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */,
 				4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */,
 				4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */,
+				4F2DDB9E1D7C30240001395F /* ReminderCategoryDetailController.swift in Sources */,
+				4F2DDBA01D7C3EEF0001395F /* ReminderController.swift in Sources */,
 				4F9F562E1D7A86950022E12C /* LocationManager.swift in Sources */,
-				4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */,
 				4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */,
 				4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */,
 			);
