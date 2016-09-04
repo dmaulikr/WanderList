@@ -9,13 +9,18 @@
 import UIKit
 import MapKit
 
+protocol LocationPickDelegate {
+    func didPickLocation(controller: MapPickController)
+}
+
 class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
 
     @IBOutlet var mapView: MKMapView!
     // Search bar
     var resultSearchController: UISearchController? = nil
-    // The p
-    var selectedPin: MKPlacemark? = nil
+    // For location passing
+    var delegate: LocationPickDelegate?
+    var currentPickedLocation: MKPointAnnotation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,22 +59,40 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
         // Dispose of any resources that can be recreated.
     }
 
-    func dropPinFromSearch(placemark: MKPlacemark) {
-        // cache the pin
-        selectedPin = placemark
+    func addAnnotation(annotation: MKPointAnnotation) {
         // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-                annotation.subtitle = "(city) (state)"
-        }
         mapView.addAnnotation(annotation)
+        mapView.selectAnnotation(annotation, animated: true)
+    }
+
+    func addAnnotationFromSearch(annotation: MKPointAnnotation) {
+        addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        let region = MKCoordinateRegionMake(annotation.coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+
+    // MARK:- MapViewDelegate methods, Annotation View
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            // return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView?.canShowCallout = true
+        pinView?.rightCalloutAccessoryView = UIButton(type: .ContactAdd)
+        return pinView
+    }
+
+    // MARK:- MapViewDelegate methods, Annotation View Callout
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if (view.annotation is MKPointAnnotation) {
+            self.currentPickedLocation = view.annotation as? MKPointAnnotation
+            delegate!.didPickLocation(self)
+        }
     }
 
     /*

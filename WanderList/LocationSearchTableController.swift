@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol HandleMapSearch {
-    func dropPinFromSearch(placemark: MKPlacemark)
+    func addAnnotationFromSearch(annotation: MKPointAnnotation)
 }
 
 class LocationSearchTableController: UITableViewController, UISearchResultsUpdating {
@@ -55,8 +55,16 @@ class LocationSearchTableController: UITableViewController, UISearchResultsUpdat
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let title = cell?.textLabel?.text
+        let subtitle = cell?.detailTextLabel?.text
         let selectedItem = matchingItems[indexPath.row].placemark
-        handleMapSearchDelegate?.dropPinFromSearch(selectedItem)
+        let coordinate = selectedItem.coordinate
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = title
+        annotation.subtitle = subtitle
+        handleMapSearchDelegate?.addAnnotationFromSearch(annotation)
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -85,10 +93,8 @@ class LocationSearchTableController: UITableViewController, UISearchResultsUpdat
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
         // put a comma between street and city/state
         let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        // put a space between "Washington" and "DC"
-        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
         let addressLine = String(
-            format: "%@%@%@%@%@%@%@",
+            format: "%@%@%@%@%@",
             // street number
             selectedItem.subThoroughfare ?? "",
             firstSpace,
@@ -96,10 +102,7 @@ class LocationSearchTableController: UITableViewController, UISearchResultsUpdat
             selectedItem.thoroughfare ?? "",
             comma,
             // city
-            selectedItem.locality ?? "",
-            secondSpace,
-            // state
-            selectedItem.administrativeArea ?? ""
+            selectedItem.locality ?? ""
         )
         return addressLine
     }
