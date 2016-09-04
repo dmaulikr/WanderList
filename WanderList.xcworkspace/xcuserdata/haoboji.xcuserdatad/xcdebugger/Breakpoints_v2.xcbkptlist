@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WanderList/CategoryController.swift"
-            timestampString = "494644380.947051"
+            timestampString = "494647808.328266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "CategoryController"
             landmarkType = "3">
          </BreakpointContent>
