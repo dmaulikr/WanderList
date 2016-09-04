@@ -30,4 +30,18 @@ class DataManager: NSObject {
         }
     }
 
+    // Get categories
+    func getCategoryList() -> NSArray {
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("Category", inManagedObjectContext: self.moc!)
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        fetchRequest.entity = entityDescription
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        let categories = try? self.moc!.executeFetchRequest(fetchRequest)
+        if (categories == nil) {
+            return NSArray()
+        } else {
+            return categories!
+        }
+    }
 }

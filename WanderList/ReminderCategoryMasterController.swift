@@ -12,6 +12,7 @@ import CoreData
 class ReminderCategoryMasterController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
+    var categories: NSArray = NSArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,9 @@ class ReminderCategoryMasterController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
         }
+        // init table
+        categories = DataManager.shared.getCategoryList()
+        self.tableView.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -49,19 +53,18 @@ class ReminderCategoryMasterController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // return self.fetchedResultsController.sections?.count ?? 0
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // let sectionInfo = self.fetchedResultsController.sections![section]
-        return 0
+        return categories.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath)
-        // let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-        // self.configureCell(cell, withObject: object)
+        let category = categories[indexPath.row] as! Category
+        cell.textLabel?.text = category.title
+        cell.textLabel?.textColor = Config.colors[category.color!.integerValue]
         return cell
     }
 
@@ -97,14 +100,6 @@ class ReminderCategoryMasterController: UITableViewController {
 //                abort()
 //            }
         }
-    }
-
-    func configureCell(cell: UITableViewCell, withObject object: NSManagedObject) {
-        cell.textLabel!.text = object.valueForKey("timeStamp")!.description
-    }
-
-    func editCell() {
-
     }
 
     /*

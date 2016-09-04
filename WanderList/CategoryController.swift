@@ -67,6 +67,20 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
 
     // save category and close modal
     @IBAction func save(sender: UIBarButtonItem) {
+        // Empty title
+        if (titleInput.text == nil || titleInput.text == "") {
+            let alert = UIAlertController(title: "Oops", message: "Category title is required", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        // No location while switch on
+        if (notificationIsEnabled.on && currentPickedLocation == nil) {
+            let alert = UIAlertController(title: "Oops", message: "Location is required if notification is enabled", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
         // Create a reminder
         let newCategory: Category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: DataManager.shared.moc!) as? Category)!
         newCategory.title = titleInput.text
