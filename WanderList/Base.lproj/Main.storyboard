@@ -136,7 +136,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uQM-I8-emT">
                             <connections>
-                                <segue destination="gaU-vF-m3o" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="Wmk-68-Xq4"/>
+                                <segue destination="gaU-vF-m3o" kind="presentation" identifier="addCategory" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="Wmk-68-Xq4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

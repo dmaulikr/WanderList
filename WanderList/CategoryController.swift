@@ -23,6 +23,9 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     var currentRadiusIndex: Int = 0
     var currentPickedLocation: MKPointAnnotation?
 
+    // For communication with category table view
+    var delegate: CategoryListDelegate?
+
     override func viewDidLoad() {
         // init color
         super.viewDidLoad()
@@ -92,6 +95,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         newCategory.longitude = currentPickedLocation?.coordinate.longitude
         newCategory.notificationRadius = Config.radius[currentRadiusIndex]
         DataManager.shared.saveContext()
+        delegate?.refeshTable()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

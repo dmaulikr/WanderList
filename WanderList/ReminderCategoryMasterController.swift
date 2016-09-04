@@ -9,7 +9,11 @@
 import UIKit
 import CoreData
 
-class ReminderCategoryMasterController: UITableViewController {
+protocol CategoryListDelegate {
+    func refeshTable()
+}
+
+class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
     var detailViewController: DetailViewController? = nil
     var categories: NSArray = NSArray()
@@ -36,10 +40,24 @@ class ReminderCategoryMasterController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // Delegates
+    func refeshTable() {
+        categories = DataManager.shared.getCategoryList()
+        tableView.reloadData()
+    }
+
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if (segue.identifier == nil) {
+            return
+        }
+        switch segue.identifier! {
+        case "addCategory":
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
+            controller.delegate = self
+            break
+        case "showDetail":
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 // let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
@@ -47,6 +65,9 @@ class ReminderCategoryMasterController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+            break
+        default:
+            break
         }
     }
 
@@ -73,17 +94,21 @@ class ReminderCategoryMasterController: UITableViewController {
         return true
     }
 
-    override func tableView(tableView: UITableView,
-        editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-            let edit = UITableViewRowAction(style: .Destructive, title: "Edit") { action, index in
-                print("Edit button tapped")
-            }
-            edit.backgroundColor = UIColor.blueColor()
-            let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
-                print("Delete button tapped")
-            }
-            delete.backgroundColor = UIColor.redColor()
-            return [delete, edit]
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        // Add adite action
+        let edit = UITableViewRowAction(style: .Destructive, title: "Edit") { action, index in
+            print("Edit button tapped")
+        }
+        edit.backgroundColor = UIColor.blueColor()
+        // Add delete action
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
+            DataManager.shared.moc?.deleteObject(self.categories[indexPath.row] as! NSManagedObject)
+            DataManager.shared.saveContext()
+            self.categories = DataManager.shared.getCategoryList()
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        delete.backgroundColor = UIColor.redColor()
+        return [delete, edit]
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
