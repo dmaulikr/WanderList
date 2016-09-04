@@ -18,18 +18,34 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     @IBOutlet var radiusCell: UITableViewCell!
     @IBOutlet var locationCell: UITableViewCell!
 
+    // For current category
+    var category: Category?
+
     // For category settings
     var currentColorIndex: Int = 0
     var currentRadiusIndex: Int = 0
     var currentPickedLocation: MKPointAnnotation?
-
     // For communication with category table view
     var delegate: CategoryListDelegate?
 
     override func viewDidLoad() {
-        // init color
         super.viewDidLoad()
-        self.title = "New"
+        // Check new or edit
+        if (category == nil) {
+            self.title = "New"
+        } else {
+            self.title = "Edit"
+            currentColorIndex = category!.color!.integerValue
+            currentRadiusIndex = category!.notificationRadius!.integerValue
+            let annotation = MKPointAnnotation()
+            annotation.coordinate.latitude = category!.latitude!.doubleValue
+            annotation.coordinate.longitude = category!.longitude!.doubleValue
+            annotation.subtitle = category!.address
+            currentPickedLocation = annotation
+            locationCell.detailTextLabel?.text = currentPickedLocation?.subtitle
+            titleInput.text = category?.title
+        }
+        // init color
         colorCell.imageView?.image = colorCell.imageView?.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         colorCell.imageView?.tintColor = Config.colors[currentColorIndex]
         colorCell.textLabel?.text = Config.colorsText[currentColorIndex]
@@ -84,16 +100,17 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
             self.presentViewController(alert, animated: true, completion: nil)
             return
         }
-        // Create a reminder
-        let newCategory: Category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: DataManager.shared.moc!) as? Category)!
-        newCategory.title = titleInput.text
-        newCategory.color = currentColorIndex
-        newCategory.order = 99999
-        newCategory.notificationIsEnabled = notificationIsEnabled.on
-        newCategory.address = currentPickedLocation?.subtitle
-        newCategory.latitude = currentPickedLocation?.coordinate.latitude
-        newCategory.longitude = currentPickedLocation?.coordinate.longitude
-        newCategory.notificationRadius = Config.radius[currentRadiusIndex]
+        // Create a reminder if needed
+        if (category == nil) {
+            category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: DataManager.shared.moc!) as? Category)!
+        }
+        category!.title = titleInput.text
+        category!.color = currentColorIndex
+        category!.notificationIsEnabled = notificationIsEnabled.on
+        category!.address = currentPickedLocation?.subtitle
+        category!.latitude = currentPickedLocation?.coordinate.latitude
+        category!.longitude = currentPickedLocation?.coordinate.longitude
+        category!.notificationRadius = currentRadiusIndex
         DataManager.shared.saveContext()
         delegate?.refeshTable()
         self.dismissViewControllerAnimated(true, completion: nil)

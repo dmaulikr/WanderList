@@ -57,6 +57,11 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
             controller.delegate = self
             break
+        case "editCategory":
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
+            controller.delegate = self
+            controller.category = sender as? Category
+            break
         case "showDetail":
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 // let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
@@ -97,7 +102,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         // Add adite action
         let edit = UITableViewRowAction(style: .Destructive, title: "Edit") { action, index in
-            print("Edit button tapped")
+            self.performSegueWithIdentifier("editCategory", sender: self.categories[index.row])
         }
         edit.backgroundColor = UIColor.blueColor()
         // Add delete action
