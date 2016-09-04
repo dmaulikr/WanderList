@@ -15,9 +15,9 @@
 		4F0A95BF1D73B95B0036CA39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95BE1D73B95B0036CA39 /* Assets.xcassets */; };
 		4F0A95C21D73B95B0036CA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A95C01D73B95B0036CA39 /* LaunchScreen.storyboard */; };
 		4F0A95CD1D73B95B0036CA39 /* WanderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */; };
-		4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */; };
+		4F3370C21D7BADA6009132EF /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3370C01D7BADA6009132EF /* Category+CoreDataProperties.swift */; };
+		4F3370C31D7BADA6009132EF /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3370C11D7BADA6009132EF /* Reminder+CoreDataProperties.swift */; };
 		4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703991D792C2E004AB9E7 /* Category.swift */; };
-		4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */; };
 		4F57039F1D792C2E004AB9E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57039B1D792C2E004AB9E7 /* Reminder.swift */; };
 		4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A11D795627004AB9E7 /* CategoryController.swift */; };
 		4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5703A41D798BAF004AB9E7 /* DataManager.swift */; };
@@ -56,9 +56,9 @@
 		4F0A95C81D73B95B0036CA39 /* WanderListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0A95CC1D73B95B0036CA39 /* WanderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderListTests.swift; sourceTree = "<group>"; };
 		4F0A95CE1D73B95B0036CA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F3370C01D7BADA6009132EF /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F3370C11D7BADA6009132EF /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F5703991D792C2E004AB9E7 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F57039B1D792C2E004AB9E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		4F5703A11D795627004AB9E7 /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		4F5703A41D798BAF004AB9E7 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -153,9 +153,9 @@
 		4F5703971D79137E004AB9E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F5703981D792C2E004AB9E7 /* Category+CoreDataProperties.swift */,
+				4F3370C01D7BADA6009132EF /* Category+CoreDataProperties.swift */,
+				4F3370C11D7BADA6009132EF /* Reminder+CoreDataProperties.swift */,
 				4F5703991D792C2E004AB9E7 /* Category.swift */,
-				4F57039A1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift */,
 				4F57039B1D792C2E004AB9E7 /* Reminder.swift */,
 				4F0A95B41D73B95B0036CA39 /* WanderList.xcdatamodeld */,
 			);
@@ -402,11 +402,11 @@
 				4F5703A51D798BAF004AB9E7 /* DataManager.swift in Sources */,
 				4FE622491D7A70D300EBC90F /* MapPickController.swift in Sources */,
 				4F0A95B31D73B95B0036CA39 /* AppDelegate.swift in Sources */,
-				4F57039C1D792C2E004AB9E7 /* Category+CoreDataProperties.swift in Sources */,
+				4F3370C31D7BADA6009132EF /* Reminder+CoreDataProperties.swift in Sources */,
+				4F3370C21D7BADA6009132EF /* Category+CoreDataProperties.swift in Sources */,
 				4FE622441D7A5B6000EBC90F /* ColorPickController.swift in Sources */,
 				4F0A95B81D73B95B0036CA39 /* ReminderCategoryMasterController.swift in Sources */,
 				4F5703A21D795627004AB9E7 /* CategoryController.swift in Sources */,
-				4F57039E1D792C2E004AB9E7 /* Reminder+CoreDataProperties.swift in Sources */,
 				4F9F562E1D7A86950022E12C /* LocationManager.swift in Sources */,
 				4F0A95BA1D73B95B0036CA39 /* DetailViewController.swift in Sources */,
 				4F57039D1D792C2E004AB9E7 /* Category.swift in Sources */,

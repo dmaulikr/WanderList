@@ -13,6 +13,7 @@ import CoreData
 class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDelegate, LocationPickDelegate {
 
     @IBOutlet var titleInput: UITextField!
+    @IBOutlet var notificationIsEnabled: UISwitch!
     @IBOutlet var colorCell: UITableViewCell!
     @IBOutlet var radiusCell: UITableViewCell!
     @IBOutlet var locationCell: UITableViewCell!
@@ -71,6 +72,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         newCategory.title = titleInput.text
         newCategory.color = currentColorIndex
         newCategory.order = 99999
+        newCategory.notificationIsEnabled = notificationIsEnabled.on
         newCategory.address = currentPickedLocation?.subtitle
         newCategory.latitude = currentPickedLocation?.coordinate.latitude
         newCategory.longitude = currentPickedLocation?.coordinate.longitude
