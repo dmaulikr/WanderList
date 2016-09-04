@@ -31,7 +31,7 @@ class DataManager: NSObject {
     }
 
     // Get categories
-    func getCategoryList() -> NSArray {
+    func getCategoryList() -> NSMutableArray {
         let fetchRequest = NSFetchRequest()
         let entityDescription = NSEntityDescription.entityForName("Category", inManagedObjectContext: self.moc!)
         let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
@@ -39,9 +39,9 @@ class DataManager: NSObject {
         fetchRequest.sortDescriptors = [sortDescriptor]
         let categories = try? self.moc!.executeFetchRequest(fetchRequest)
         if (categories == nil) {
-            return NSArray()
+            return NSMutableArray()
         } else {
-            return categories!
+            return NSMutableArray(array: categories!)
         }
     }
 }

@@ -16,7 +16,7 @@ protocol CategoryListDelegate {
 class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var categories: NSArray = NSArray()
+    var categories: NSMutableArray = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +25,12 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
         }
+        // Table edit button
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         // init table
         categories = DataManager.shared.getCategoryList()
         self.tableView.reloadData()
+        self.navigationController!.toolbarHidden = false
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +94,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         let category = categories[indexPath.row] as! Category
         cell.textLabel?.text = category.title
         cell.textLabel?.textColor = Config.colors[category.color!.integerValue]
+        cell.showsReorderControl = true
         return cell
     }
 
@@ -116,30 +120,28 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         return [delete, edit]
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // let context = self.fetchedResultsController.managedObjectContext
-            // context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
-
-//            do {
-//                try context.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                // print("Unresolved error \(error), \(error.userInfo)")
-//                abort()
-//            }
-        }
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
 
-    /*
-     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-
-     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-     // In the simplest, most efficient, case, reload the table view.
-     self.tableView.reloadData()
-     }
-     */
-
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let categoryToMove = categories[sourceIndexPath.row]
+        categories.removeObjectAtIndex(sourceIndexPath.row)
+        categories.insertObject(categoryToMove, atIndex: destinationIndexPath.row)
+        for i in 0..<categories.count {
+            let category = categories[i] as! Category
+            category.order = i
+        }
+        DataManager.shared.saveContext()
+    }
 }
+
+/*
+ // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
+
+ func controllerDidChangeContent(controller: NSFetchedResultsController) {
+ // In the simplest, most efficient, case, reload the table view.
+ self.tableView.reloadData()
+ }
+ */
 

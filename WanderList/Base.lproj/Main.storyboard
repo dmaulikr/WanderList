@@ -116,7 +116,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>
@@ -128,18 +127,22 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" title="Map" id="XGk-1J-K9b">
+                    <toolbarItems>
+                        <barButtonItem title="Map" id="XGk-1J-K9b">
+                            <color key="tintColor" red="0.0" green="0.57647058819999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="qhC-K7-lcS" kind="presentation" modalPresentationStyle="currentContext" modalTransitionStyle="flipHorizontal" id="JNA-I4-dmG"/>
                             </connections>
                         </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Categories" id="Zdf-7t-Un8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uQM-I8-emT">
                             <connections>
                                 <segue destination="gaU-vF-m3o" kind="presentation" identifier="addCategory" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="Wmk-68-Xq4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="gaU-vF-m3o" kind="presentation" identifier="editCategory" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="xkt-0h-aO9"/>
                     </connections>
@@ -537,7 +540,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
-        <segue reference="Wmk-68-Xq4"/>
+        <segue reference="xkt-0h-aO9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.57647058823529407" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
 </document>
