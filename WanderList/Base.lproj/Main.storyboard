@@ -518,8 +518,8 @@
         <!--Reminder-->
         <scene sceneID="rPh-QD-XCb">
             <objects>
-                <tableViewController title="Reminder" id="vck-9f-mKZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="EQV-un-jId">
+                <tableViewController title="Reminder" id="vck-9f-mKZ" customClass="ReminderController" customModule="WanderList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="EQV-un-jId">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -533,7 +533,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter reminder title here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2mR-81-il3">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter reminder title here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2mR-81-il3">
                                                     <rect key="frame" x="15" y="10" width="570" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -551,50 +551,47 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Note" id="WuY-5r-uWn">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Q3S-4B-5Xz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" rowHeight="44" id="Q3S-4B-5Xz">
                                         <rect key="frame" x="0.0" y="207.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="Q3S-4B-5Xz" id="Zcq-48-V6c">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter reminder note here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Y8-Zi-gq7">
-                                                    <rect key="frame" x="15" y="10" width="570" height="24"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7ro-s0-vRv">
+                                                    <rect key="frame" x="11" y="2" width="578" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4Y8-Zi-gq7" firstAttribute="leading" secondItem="Zcq-48-V6c" secondAttribute="leadingMargin" id="9of-w2-Lah"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="4Y8-Zi-gq7" secondAttribute="trailing" id="EHc-LB-nTK"/>
-                                                <constraint firstItem="4Y8-Zi-gq7" firstAttribute="top" secondItem="Zcq-48-V6c" secondAttribute="topMargin" id="Wow-eV-s2B"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="4Y8-Zi-gq7" secondAttribute="bottom" id="e6h-pZ-3Jj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7ro-s0-vRv" secondAttribute="trailing" constant="-4" id="2nf-gH-3JG"/>
+                                                <constraint firstItem="7ro-s0-vRv" firstAttribute="top" secondItem="Zcq-48-V6c" secondAttribute="topMargin" constant="-8" id="5dr-7f-bit"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7ro-s0-vRv" secondAttribute="bottom" constant="-8" id="PR4-l2-BXv"/>
+                                                <constraint firstItem="7ro-s0-vRv" firstAttribute="leading" secondItem="Zcq-48-V6c" secondAttribute="leadingMargin" constant="-4" id="aKU-Qg-bFE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Reminder" id="eh5-Rs-GMZ">
+                            <tableViewSection headerTitle="Due date" id="eh5-Rs-GMZ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="K39-2w-oq9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rzC-Ap-k0r" style="IBUITableViewCellStyleDefault" id="K39-2w-oq9">
                                         <rect key="frame" x="0.0" y="301.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="K39-2w-oq9" id="tdN-zy-fue">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminder title here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fb0-yJ-Yrm">
-                                                    <rect key="frame" x="15" y="10" width="570" height="24"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rzC-Ap-k0r">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Fb0-yJ-Yrm" firstAttribute="top" secondItem="tdN-zy-fue" secondAttribute="topMargin" id="Bl9-Hf-sy8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Fb0-yJ-Yrm" secondAttribute="bottom" id="awV-tO-nO9"/>
-                                                <constraint firstItem="Fb0-yJ-Yrm" firstAttribute="leading" secondItem="tdN-zy-fue" secondAttribute="leadingMargin" id="bpR-z1-6yf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Fb0-yJ-Yrm" secondAttribute="trailing" id="gSc-7p-h7k"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -605,10 +602,20 @@
                             <outlet property="delegate" destination="vck-9f-mKZ" id="SbZ-Xu-9H4"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="C5r-TG-iYX"/>
+                        <barButtonItem title="Item" id="0lP-fd-6iF"/>
+                        <barButtonItem title="Item" id="jc5-Zf-qzX"/>
+                    </toolbarItems>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="noteInput" destination="7ro-s0-vRv" id="YXT-cA-BhN"/>
+                        <outlet property="titleInput" destination="2mR-81-il3" id="kE0-dv-cxt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF4-dw-SgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2256" y="757"/>
+            <point key="canvasLocation" x="2256" y="754"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rhT-10-Mm7">

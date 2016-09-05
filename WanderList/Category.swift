@@ -9,9 +9,11 @@
 import Foundation
 import CoreData
 
-
 class Category: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
+    // Insert code here to add functionality to your managed object subclass
+    func addReminder(reminder: Reminder) {
+        let mon = self.mutableSetValueForKey("reminders")
+        mon.addObject(reminder)
+    }
 }

@@ -5,21 +5,32 @@
 //  Created by HaoBoji on 4/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Display, add, edit reminder
+//
+
 
 import UIKit
 
-class ReminderController: UITableViewController {
+class ReminderController: UITableViewController, UITextViewDelegate {
 
     var category: Category?
     var reminder: Reminder?
 
+    @IBOutlet var titleInput: UITextField!
+    @IBOutlet var noteInput: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // For resizing note cell
+        noteInput.delegate = self
+        // Check new or edit reminder
         if (reminder == nil) {
             self.title = "New"
         } else {
             self.title = reminder?.title
         }
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ReminderController.save(_:)))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,16 +44,39 @@ class ReminderController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // Save reminder action
+    func save(controller: ReminderController) {
+
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    // Auto resize note cell
+    func textViewDidChange(textView: UITextView) {
+        let currentOffset = tableView.contentOffset
+        UIView.setAnimationsEnabled(false)
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
+        tableView.setContentOffset(currentOffset, animated: false)
     }
 
     /*
