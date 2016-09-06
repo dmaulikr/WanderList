@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ReminderCategoryDetailController: UITableViewController {
+class ReminderCategoryDetailController: UITableViewController, ReminderListDelegate {
 
     var category: Category?
-
+    var reminders: NSMutableArray?
+    var dateFormatter: NSDateFormatter = NSDateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
         self.title = category?.title
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        if (category != nil) {
+            refreshTable()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,16 +30,31 @@ class ReminderCategoryDetailController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if (reminders == nil) {
+            return 0
+        }
+        return reminders!.count
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath)
+        // Configure the cell...
+        let reminder = reminders![indexPath.row] as! Reminder
+        cell.textLabel?.text = reminder.title
+        cell.detailTextLabel?.text = dateFormatter.stringFromDate(reminder.dueDate!)
+        return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("viewReminder", sender: reminders![indexPath.row])
     }
 
     // MARK: - Navigation
+
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if (identifier == "addReminder") {
             if (category == nil) {
@@ -56,22 +75,25 @@ class ReminderCategoryDetailController: UITableViewController {
         }
         switch segue.identifier! {
         case "addReminder":
-
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ReminderController
+            controller.category = category
+            controller.delegate = self
+            break
+        case "viewReminder":
+            let controller = segue.destinationViewController as! ReminderController
+            controller.category = category
+            controller.reminder = sender as? Reminder
+            controller.delegate = self
             break
         default:
             break
         }
     }
 
-    /*
-     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-     // Configure the cell...
-
-     return cell
-     }
-     */
+    func refresh() {
+        reminders = NSMutableArray(array: (category!.reminders!.allObjects as! [Reminder]))
+        tableView.reloadData()
+    }
 
     /*
      // Override to support conditional editing of the table view.

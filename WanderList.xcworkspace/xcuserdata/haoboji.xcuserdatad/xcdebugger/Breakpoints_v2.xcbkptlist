@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WanderList/DataManager.swift"
-            timestampString = "494649535.566135"
+            timestampString = "494770069.069161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48">
+            startingLineNumber = "63"
+            endingLineNumber = "63">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WanderList/CategoryController.swift"
-            timestampString = "494732955.499166"
+            timestampString = "494741888.809102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WanderList/CategoryController.swift"
-            timestampString = "494732955.499166"
+            timestampString = "494741888.809102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "save(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -119,13 +119,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "WanderList/ReminderCategoryMasterController.swift"
+            timestampString = "494811296.151103"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "prepareForSegue(_:sender:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WanderList/DataManager.swift"
+            timestampString = "494763030.308337"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "getCategoryList()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "WanderList/ReminderCategoryDetailController.swift"
-            timestampString = "494681244.128365"
+            timestampString = "494769374.853764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "shouldPerformSegueWithIdentifier(_:sender:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -135,13 +167,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WanderList/ReminderController.swift"
-            timestampString = "494732955.499166"
+            filePath = "WanderList/ReminderCategoryDetailController.swift"
+            timestampString = "494770922.899621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "textViewDidChange(_:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "refreshTable()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -151,13 +183,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WanderList/ReminderController.swift"
-            timestampString = "494732955.499166"
+            filePath = "WanderList/ReminderCategoryDetailController.swift"
+            timestampString = "494770922.899621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "refreshTable()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

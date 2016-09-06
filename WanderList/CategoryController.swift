@@ -12,6 +12,10 @@ import UIKit
 import MapKit
 import CoreData
 
+protocol CategoryListDelegate {
+    func refresh()
+}
+
 class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDelegate, LocationPickDelegate {
 
     @IBOutlet var titleInput: UITextField!
@@ -39,12 +43,15 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
             self.title = "Edit"
             currentColorIndex = category!.color!.integerValue
             currentRadiusIndex = category!.notificationRadius!.integerValue
-            let annotation = MKPointAnnotation()
-            annotation.coordinate.latitude = category!.latitude!.doubleValue
-            annotation.coordinate.longitude = category!.longitude!.doubleValue
-            annotation.subtitle = category!.address
-            currentPickedLocation = annotation
-            locationCell.detailTextLabel?.text = currentPickedLocation?.subtitle
+            if (category!.notificationIsEnabled! == 1) {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate.latitude = category!.latitude!.doubleValue
+                annotation.coordinate.longitude = category!.longitude!.doubleValue
+                annotation.subtitle = category!.address
+                currentPickedLocation = annotation
+                locationCell.detailTextLabel?.text = currentPickedLocation?.subtitle
+            }
+
             titleInput.text = category?.title
         }
         // init color
@@ -102,7 +109,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
             self.presentViewController(alert, animated: true, completion: nil)
             return
         }
-        // Create a reminder if needed
+        // Create a category if needed
         if (category == nil) {
             category = (NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: DataManager.shared.moc!) as? Category)!
         }
@@ -114,7 +121,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         category!.longitude = currentPickedLocation?.coordinate.longitude
         category!.notificationRadius = currentRadiusIndex
         DataManager.shared.saveContext()
-        delegate?.refeshTable()
+        delegate?.refresh()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -145,6 +152,11 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         default:
             return 0
         }
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Dismiss keyboard
+        view.endEditing(true)
     }
 
     // MARK: - Navigation

@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 
-protocol CategoryListDelegate {
-    func refeshTable()
-}
-
 class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
     var detailViewController: ReminderCategoryDetailController? = nil
@@ -25,6 +21,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? ReminderCategoryDetailController
         }
+        self.splitViewController?.preferredDisplayMode = .AllVisible
         // Table edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         // init table
@@ -44,12 +41,25 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
     }
 
     // Delegates
-    func refeshTable() {
+    func refresh() {
         categories = DataManager.shared.getCategoryList()
         tableView.reloadData()
     }
 
     // MARK: - Segues
+
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if (identifier == "mapSegue") {
+            let mapController = self.storyboard!.instantiateViewControllerWithIdentifier("ReminderCategoryMapMasterController") as! ReminderCategoryMapMasterController
+            UIView.beginAnimations("animation", context: nil)
+            UIView.setAnimationDuration(1.0)
+            self.navigationController!.pushViewController(mapController, animated: false)
+            UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromLeft, forView: self.navigationController!.view, cache: false)
+            UIView.commitAnimations()
+            return false
+        }
+        return true
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == nil) {
