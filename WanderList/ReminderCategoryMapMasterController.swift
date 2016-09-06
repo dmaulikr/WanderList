@@ -59,12 +59,15 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
     func refresh() {
         mapView.removeAnnotations(mapView.annotations)
         categories = DataManager.shared.getCategoryList()
-        for category in categories! {
+        for item in categories! {
+            let category = item as! Category
             let annotation = CategoryAnnotation()
-            annotation.category = category as? Category
+            annotation.category = category
             mapView.addAnnotation(annotation)
-            let circle = CategoryCircle(category: category as! Category)
-            mapView.addOverlay(circle)
+            if (category.notificationArriving == 1 || category.notificationLeaving == 1) {
+                let circle = CategoryCircle(category: category)
+                mapView.addOverlay(circle)
+            }
         }
     }
 

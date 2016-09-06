@@ -107,7 +107,7 @@ class ReminderController: UITableViewController, UITextViewDelegate {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,6 +118,8 @@ class ReminderController: UITableViewController, UITextViewDelegate {
             return 1
         case 2:
             return 2
+        case 3:
+            return 1
         default:
             return 0
         }

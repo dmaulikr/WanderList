@@ -45,7 +45,27 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
         // Configure the cell...
         let reminder = reminders![indexPath.row] as! Reminder
         cell.textLabel?.text = reminder.title
-        cell.detailTextLabel?.text = dateFormatter.stringFromDate(reminder.dueDate!)
+        // Display due date
+        if (reminder.isCompleted!.boolValue) {
+            cell.detailTextLabel!.text = ""
+        } else if (reminder.dueIsEnabled!.boolValue) {
+            cell.detailTextLabel?.text = dateFormatter.stringFromDate(reminder.dueDate!)
+        } else {
+            cell.detailTextLabel?.text = "N/A"
+        }
+        // Change color if overdue
+        if (reminder.dueIsEnabled!.boolValue && reminder.dueDate!.timeIntervalSinceNow < 0) {
+            cell.textLabel?.textColor = UIColor.redColor()
+            cell.detailTextLabel?.textColor = UIColor.redColor()
+        } else {
+            cell.textLabel?.textColor = UIColor.blackColor()
+            cell.detailTextLabel?.textColor = UIColor.grayColor()
+        }
+        // Change color if complete
+        if (reminder.isCompleted!.boolValue) {
+            cell.textLabel?.textColor = UIColor.grayColor()
+            cell.detailTextLabel?.textColor = UIColor.grayColor()
+        }
         return cell
     }
 
@@ -92,6 +112,23 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
 
     func refresh() {
         reminders = NSMutableArray(array: (category!.reminders!.allObjects as! [Reminder]))
+        reminders!.sortUsingComparator({ (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
+            let reminder1 = obj1 as! Reminder
+            let reminder2 = obj2 as! Reminder
+            if (reminder1.isCompleted!.boolValue && !reminder2.isCompleted!.boolValue) {
+                return .OrderedDescending
+            }
+            if (!reminder1.isCompleted!.boolValue && reminder2.isCompleted!.boolValue) {
+                return .OrderedAscending
+            }
+            if (reminder1.dueIsEnabled!.boolValue && !reminder2.dueIsEnabled!.boolValue) {
+                return .OrderedAscending
+            }
+            if (!reminder1.dueIsEnabled!.boolValue && reminder2.dueIsEnabled!.boolValue) {
+                return .OrderedDescending
+            }
+            return reminder1.dueDate!.compare(reminder2.dueDate!)
+        })
         tableView.reloadData()
     }
 
