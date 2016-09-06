@@ -46,11 +46,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="Cm8-Vo-jf5" id="uKJ-kT-1Py"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="Xqg-40-d1X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O98-6t-LTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2326" y="-630"/>
+            <point key="canvasLocation" x="1525" y="-630"/>
         </scene>
         <!--Category Navigation-->
         <scene sceneID="pY4-Hu-kfo">
@@ -502,7 +503,7 @@
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
-                <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DetaiNavigationController" id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -789,7 +790,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfD-zm-Ujw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1509" y="-176"/>
+            <point key="canvasLocation" x="2337" y="-630"/>
         </scene>
     </scenes>
     <resources>
@@ -798,7 +799,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="6HX-YF-n4R"/>
         <segue reference="A6q-00-YXc"/>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="Xqg-40-d1X"/>
         <segue reference="WUK-rf-f3g"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.57647058823529407" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>

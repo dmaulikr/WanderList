@@ -47,6 +47,16 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         categories = DataManager.shared.getCategoryList()
         tableView.reloadData()
     }
+    func showDetail(category: Category) {
+        for i in 0..<categories.count {
+            let categoryInTable = categories[i] as! Category
+            if (category.objectID == categoryInTable.objectID) {
+
+                break
+            }
+        }
+        performSegueWithIdentifier("showDetail", sender: self)
+    }
 
     // MARK: - Segues
 

@@ -96,7 +96,8 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if (view.annotation is CategoryAnnotation) {
-            performSegueWithIdentifier("showDetail", sender: self)
+            let category = (view.annotation as! CategoryAnnotation).category
+            performSegueWithIdentifier("showDetail", sender: category)
         }
     }
 
@@ -114,12 +115,6 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
 
     // MARK: - Segues, Navigation
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if (identifier == "listSegue") {
-        }
-        return true
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -131,12 +126,18 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
             controller.delegate = self
             break
+        case "showDetail":
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ReminderCategoryDetailController
+            controller.category = sender as? Category
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
+            break
         default:
             break
         }
     }
 
-    // Annotation
+// Annotation
     class CategoryAnnotation: MKPointAnnotation {
         var color: UIColor?
         var category: Category? {
@@ -149,7 +150,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             }
         }
     }
-    // Annotation radius
+// Annotation radius
     class CategoryCircle: MKCircle {
         var color: UIColor?
         var category: Category?
