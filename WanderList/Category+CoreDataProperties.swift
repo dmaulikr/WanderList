@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  WanderList
 //
-//  Created by HaoBoji on 5/09/2016.
+//  Created by HaoBoji on 6/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,10 +18,11 @@ extension Category {
     @NSManaged var color: NSNumber?
     @NSManaged var latitude: NSNumber?
     @NSManaged var longitude: NSNumber?
-    @NSManaged var notificationIsEnabled: NSNumber?
+    @NSManaged var notificationArriving: NSNumber?
     @NSManaged var notificationRadius: NSNumber?
     @NSManaged var order: NSNumber?
     @NSManaged var title: String?
+    @NSManaged var notificationLeaving: NSNumber?
     @NSManaged var reminders: NSSet?
 
 }

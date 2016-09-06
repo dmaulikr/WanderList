@@ -18,7 +18,7 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
         self.title = category?.title
         if (category != nil) {
-            refreshTable()
+            refresh()
         }
     }
 

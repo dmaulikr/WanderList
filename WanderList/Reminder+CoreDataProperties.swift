@@ -2,7 +2,7 @@
 //  Reminder+CoreDataProperties.swift
 //  WanderList
 //
-//  Created by HaoBoji on 5/09/2016.
+//  Created by HaoBoji on 6/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

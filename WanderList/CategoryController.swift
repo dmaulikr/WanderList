@@ -19,7 +19,8 @@ protocol CategoryListDelegate {
 class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDelegate, LocationPickDelegate {
 
     @IBOutlet var titleInput: UITextField!
-    @IBOutlet var notificationIsEnabled: UISwitch!
+    @IBOutlet var arrivingSwitch: UISwitch!
+    @IBOutlet var leavingSwitch: UISwitch!
     @IBOutlet var colorCell: UITableViewCell!
     @IBOutlet var radiusCell: UITableViewCell!
     @IBOutlet var locationCell: UITableViewCell!
@@ -43,15 +44,14 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
             self.title = "Edit"
             currentColorIndex = category!.color!.integerValue
             currentRadiusIndex = category!.notificationRadius!.integerValue
-            if (category!.notificationIsEnabled! == 1) {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate.latitude = category!.latitude!.doubleValue
-                annotation.coordinate.longitude = category!.longitude!.doubleValue
-                annotation.subtitle = category!.address
-                currentPickedLocation = annotation
-                locationCell.detailTextLabel?.text = currentPickedLocation?.subtitle
-            }
-
+            arrivingSwitch.on = (category!.notificationArriving! == 1)
+            leavingSwitch.on = (category!.notificationLeaving! == 1)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate.latitude = category!.latitude!.doubleValue
+            annotation.coordinate.longitude = category!.longitude!.doubleValue
+            annotation.subtitle = category!.address
+            currentPickedLocation = annotation
+            locationCell.detailTextLabel?.text = currentPickedLocation?.subtitle
             titleInput.text = category?.title
         }
         // init color
@@ -82,13 +82,14 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
     // save picked radius
     func didPickRadius(controller: RadiusPickController) {
         // Load radius config
+        currentRadiusIndex = controller.currentRadiusIndex!
         radiusCell.detailTextLabel?.text = Config.radiusText[controller.currentRadiusIndex!]
         self.navigationController?.popViewControllerAnimated(true)
     }
 
     // save picked location
     func didPickLocation(controller: MapPickController) {
-        self.currentPickedLocation = controller.currentPickedLocation
+        currentPickedLocation = controller.currentPickedLocation
         locationCell.detailTextLabel?.text = currentPickedLocation!.subtitle
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -103,8 +104,8 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
             return
         }
         // No location while switch on
-        if (notificationIsEnabled.on && currentPickedLocation == nil) {
-            let alert = UIAlertController(title: "Oops", message: "Location is required if notification is enabled", preferredStyle: UIAlertControllerStyle.Alert)
+        if (currentPickedLocation == nil) {
+            let alert = UIAlertController(title: "Oops", message: "Location is required", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             return
@@ -115,7 +116,8 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         }
         category!.title = titleInput.text
         category!.color = currentColorIndex
-        category!.notificationIsEnabled = notificationIsEnabled.on
+        category!.notificationArriving = arrivingSwitch.on
+        category!.notificationLeaving = leavingSwitch.on
         category!.address = currentPickedLocation?.subtitle
         category!.latitude = currentPickedLocation?.coordinate.latitude
         category!.longitude = currentPickedLocation?.coordinate.longitude
@@ -148,7 +150,7 @@ class CategoryController: UITableViewController, ColorPickDelegate, RadiusPickDe
         case 1:
             return 1
         case 2:
-            return 3
+            return 4
         default:
             return 0
         }

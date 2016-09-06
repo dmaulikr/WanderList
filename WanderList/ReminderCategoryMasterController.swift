@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MapKit
 
 class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
@@ -32,6 +33,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+        refresh()
         super.viewWillAppear(animated)
     }
 
@@ -47,19 +49,6 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
     }
 
     // MARK: - Segues
-
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if (identifier == "mapSegue") {
-            let mapController = self.storyboard!.instantiateViewControllerWithIdentifier("ReminderCategoryMapMasterController") as! ReminderCategoryMapMasterController
-            UIView.beginAnimations("animation", context: nil)
-            UIView.setAnimationDuration(1.0)
-            self.navigationController!.pushViewController(mapController, animated: false)
-            UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromLeft, forView: self.navigationController!.view, cache: false)
-            UIView.commitAnimations()
-            return false
-        }
-        return true
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == nil) {
