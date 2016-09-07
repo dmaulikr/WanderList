@@ -76,7 +76,7 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
     // MARK:- MapViewDelegate methods, Annotation View
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            // return nil so map view draws "blue dot" for standard user location
+            // return nil so map view draws "green dot" for standard user location
             return nil
         }
         let reuseId = "pin"
@@ -94,15 +94,5 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
             delegate!.didPickLocation(self)
         }
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 
 }

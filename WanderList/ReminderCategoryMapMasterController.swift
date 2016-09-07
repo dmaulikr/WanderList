@@ -11,8 +11,8 @@ import MapKit
 
 class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, CategoryListDelegate {
 
+    // Left nav button
     @IBOutlet var editMode: UIBarButtonItem!
-
     @IBAction func editAction(sender: UIBarButtonItem) {
         if (sender.title == "Edit") {
             sender.title = "Done"
@@ -22,7 +22,6 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             self.title = "Categories"
         }
     }
-
     // Detail view controller
     var detailViewController: ReminderCategoryDetailController? = nil
     var categories: NSMutableArray?
@@ -95,7 +94,8 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if (annotation is CategoryAnnotation) {
-            let reuseId = "bridge"
+            // Configure annotationView
+            let reuseId = "CategoryAnnotation"
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
             if (annotationView == nil) {
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
@@ -106,6 +106,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
                 annotationView!.annotation = annotation
             }
             let categoryAnnotation = annotation as! CategoryAnnotation
+            // Set color
             annotationView?.pinTintColor = categoryAnnotation.color
             annotationView?.rightCalloutAccessoryView?.tintColor = categoryAnnotation.color
             return annotationView
