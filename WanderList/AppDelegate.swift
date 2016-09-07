@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         DataManager.shared.moc = self.managedObjectContext
         // Start location tracking
         LocationManager.shared.start()
+        // Register notification
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         return true
     }
 

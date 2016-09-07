@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ReminderCategoryDetailController: UITableViewController, ReminderListDelegate {
 
@@ -71,6 +72,18 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("viewReminder", sender: reminders![indexPath.row])
+    }
+
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        // Add delete action
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
+            DataManager.shared.moc?.deleteObject(self.reminders![indexPath.row] as! NSManagedObject)
+            DataManager.shared.saveContext()
+            self.reminders?.removeObjectAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        delete.backgroundColor = UIColor.redColor()
+        return [delete]
     }
 
     // MARK: - Navigation

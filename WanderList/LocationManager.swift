@@ -21,7 +21,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     private override init() {
         self.manager = CLLocationManager()
         super.init()
-        self.manager.activityType = CLActivityType.AutomotiveNavigation
+        self.manager.activityType = CLActivityType.Other
         self.manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.manager.delegate = self
     }
@@ -29,6 +29,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     public func start() {
         self.manager.requestAlwaysAuthorization()
         self.manager.startMonitoringSignificantLocationChanges()
+        self.manager.startUpdatingLocation()
     }
 
     public func getLastLocation() -> CLLocation? {
@@ -36,6 +37,9 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // print(manager.location!.timestamp)
+        if (locations.count == 0) {
+            return
+        }
+        NotificationController.shared.didUpdateLocation(locations.last!)
     }
 }

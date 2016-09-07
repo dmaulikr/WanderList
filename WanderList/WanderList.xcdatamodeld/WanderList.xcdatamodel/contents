@@ -8,6 +8,7 @@
         <attribute name="notificationArriving" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="notificationLeaving" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="notificationRadius" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="notificationTimestamp" optional="YES" attributeType="Date" defaultDateTimeInterval="-978343200" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="-1" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="reminders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="category" inverseEntity="Reminder" syncable="YES"/>
@@ -21,7 +22,7 @@
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="reminders" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="306" positionY="405" width="128" height="195"/>
+        <element name="Category" positionX="306" positionY="405" width="128" height="210"/>
         <element name="Reminder" positionX="520" positionY="405" width="128" height="135"/>
     </elements>
 </model>

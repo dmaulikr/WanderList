@@ -535,7 +535,7 @@
                                             <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mqe-xd-1Xb">
@@ -692,7 +692,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9g-D0-POM">
-                                                    <rect key="frame" x="15" y="10" width="80" height="24"/>
+                                                    <rect key="frame" x="15" y="12.5" width="80" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -702,11 +702,9 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="p9g-D0-POM" secondAttribute="bottom" id="Ens-b9-95C"/>
                                                 <constraint firstItem="p9g-D0-POM" firstAttribute="centerY" secondItem="QZF-Ym-7Tr" secondAttribute="centerY" id="Izx-xA-8zf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pEj-MF-XtB" secondAttribute="trailing" id="Tkw-5l-kfd"/>
-                                                <constraint firstItem="p9g-D0-POM" firstAttribute="top" secondItem="QZF-Ym-7Tr" secondAttribute="topMargin" id="U83-KX-cfK"/>
                                                 <constraint firstItem="p9g-D0-POM" firstAttribute="leading" secondItem="QZF-Ym-7Tr" secondAttribute="leadingMargin" id="Zp8-Oj-2C7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pEj-MF-XtB" secondAttribute="trailing" id="qZv-9T-xfw"/>
                                                 <constraint firstItem="pEj-MF-XtB" firstAttribute="centerY" secondItem="QZF-Ym-7Tr" secondAttribute="centerY" id="s3z-O0-ES9"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -777,7 +775,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SGj-8O-GDl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ehn-gx-raG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ehn-gx-raG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0vE-Yz-ebt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -797,9 +795,9 @@
         <image name="New Moon Filled-100" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6HX-YF-n4R"/>
-        <segue reference="A6q-00-YXc"/>
         <segue reference="Xqg-40-d1X"/>
+        <segue reference="o3H-NU-x0D"/>
+        <segue reference="6HX-YF-n4R"/>
         <segue reference="WUK-rf-f3g"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.57647058823529407" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>

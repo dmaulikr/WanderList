@@ -50,8 +50,6 @@ class DataManager: NSObject {
         let fetchRequest = NSFetchRequest()
         let entityDescription = NSEntityDescription.entityForName("Reminder", inManagedObjectContext: self.moc!)
         fetchRequest.entity = entityDescription
-//        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
         let categories = try? self.moc!.executeFetchRequest(fetchRequest)
         if (categories == nil) {
             return NSMutableArray()

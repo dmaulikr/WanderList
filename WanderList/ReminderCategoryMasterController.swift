@@ -87,7 +87,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         }
     }
 
-    // MARK: - Table View
+    // MARK: - Table View delegate
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
