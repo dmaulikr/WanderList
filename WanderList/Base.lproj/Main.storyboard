@@ -36,7 +36,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Categories" id="GuG-sn-0vp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="KKJ-Cp-qIL"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="aeN-IB-K6x">
+                            <connections>
+                                <action selector="editAction:" destination="sDx-nd-8jy" id="8IP-pY-agz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bnu-zh-aua">
                             <connections>
                                 <segue destination="gaU-vF-m3o" kind="presentation" identifier="addCategory" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="6HX-YF-n4R"/>
@@ -45,13 +49,91 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editMode" destination="aeN-IB-K6x" id="78A-lH-taJ"/>
                         <outlet property="mapView" destination="Cm8-Vo-jf5" id="uKJ-kT-1Py"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="Xqg-40-d1X"/>
+                        <segue destination="gaU-vF-m3o" kind="presentation" identifier="editCategory" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="Kxm-z8-ipx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O98-6t-LTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1525" y="-630"/>
+        </scene>
+        <!--Acknowledgement-->
+        <scene sceneID="Gnv-FD-Co0">
+            <objects>
+                <tableViewController title="Acknowledgement" id="Cao-ar-yGm" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lk1-8P-XBa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="DESCRIPTION" id="u6u-2s-IbG">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="QBF-19-c8F" detailTextLabel="G4f-N6-p6l" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="NNc-Id-7o4">
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNc-Id-7o4" id="Dak-ym-ugO">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="This is a school project from Monash University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QBF-19-c8F">
+                                                    <rect key="frame" x="15" y="9" width="343" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="https://www.monash.edu.au/pubs/handbooks/units/FIT5140.html" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G4f-N6-p6l">
+                                                    <rect key="frame" x="-284.5" y="28.5" width="340" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Libraries" id="Zra-eQ-Khc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="BNF-bC-Etu" detailTextLabel="h2k-JU-ujM" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="ic3-iS-Gjs">
+                                        <rect key="frame" x="0.0" y="213.5" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ic3-iS-Gjs" id="REj-qB-HKH">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="DatePickerDialog-iOS-Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BNF-bC-Etu">
+                                                    <rect key="frame" x="15" y="9" width="201.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="https://github.com/squimer/DatePickerDialog-iOS-Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h2k-JU-ujM">
+                                                    <rect key="frame" x="15" y="28.5" width="292.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Cao-ar-yGm" id="s1V-cx-N8I"/>
+                            <outlet property="delegate" destination="Cao-ar-yGm" id="uyV-s9-e3i"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HmK-8r-upe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="695" y="-1508"/>
         </scene>
         <!--Category Navigation-->
         <scene sceneID="pY4-Hu-kfo">
@@ -71,7 +153,7 @@
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
-                <splitViewController id="H1p-Uh-vWS" customClass="SplitViewController" customModule="WanderList" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="H1p-Uh-vWS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
@@ -123,6 +205,13 @@
                             <color key="tintColor" red="0.0" green="0.57647058819999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="sDx-nd-8jy" kind="show" identifier="mapSegue" id="A6q-00-YXc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="y4O-rE-xUw"/>
+                        <barButtonItem title="Acknowledgement" id="8tM-ck-lla">
+                            <color key="tintColor" red="0.0" green="0.57647058819999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="Cao-ar-yGm" kind="show" id="8EB-8d-QB0"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -795,9 +884,9 @@
         <image name="New Moon Filled-100" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="A6q-00-YXc"/>
         <segue reference="Xqg-40-d1X"/>
-        <segue reference="o3H-NU-x0D"/>
-        <segue reference="6HX-YF-n4R"/>
+        <segue reference="Kxm-z8-ipx"/>
         <segue reference="WUK-rf-f3g"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.57647058823529407" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>

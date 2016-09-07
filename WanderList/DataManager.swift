@@ -5,6 +5,8 @@
 //  Created by HaoBoji on 2/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Manage coredata related global functions
+//
 
 import UIKit
 import CoreData

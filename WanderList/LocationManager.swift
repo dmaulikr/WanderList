@@ -5,6 +5,8 @@
 //  Created by HaoBoji on 3/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Manage location updates
+//
 
 import UIKit
 
@@ -18,6 +20,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     // static instance
     public static let shared = LocationManager()
 
+    // Customize location manager
     private override init() {
         self.manager = CLLocationManager()
         super.init()
@@ -26,20 +29,23 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         self.manager.delegate = self
     }
 
+    // Start monitoring
     public func start() {
         self.manager.requestAlwaysAuthorization()
         self.manager.startMonitoringSignificantLocationChanges()
         self.manager.startUpdatingLocation()
     }
 
+    // Get recent location
     public func getLastLocation() -> CLLocation? {
         return manager.location
     }
 
+    // Recieve updates from system manager
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if (locations.count == 0) {
             return
         }
-        NotificationController.shared.didUpdateLocation(locations.last!)
+        NotificationManager.shared.didUpdateLocation(locations.last!)
     }
 }

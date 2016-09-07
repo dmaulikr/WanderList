@@ -5,13 +5,15 @@
 //  Created by HaoBoji on 7/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Recieve location updates and Send system notification
+//
 
 import UIKit
 import CoreLocation
 
-class NotificationController: NSObject {
+class NotificationManager: NSObject {
 
-    static let shared = NotificationController()
+    static let shared = NotificationManager()
     var lastLocation: CLLocation?
 
     // Recieve location updates
@@ -79,6 +81,7 @@ class NotificationController: NSObject {
         notification.alertTitle = category.title
         notification.alertBody = body
         notification.alertAction = "Show"
+        notification.soundName = UILocalNotificationDefaultSoundName
         notification.fireDate = NSDate()
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }

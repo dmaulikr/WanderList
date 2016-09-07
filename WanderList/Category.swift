@@ -11,7 +11,7 @@ import CoreData
 
 class Category: NSManagedObject {
 
-    // Insert code here to add functionality to your managed object subclass
+    // Add reminder relationship in category
     func addReminder(reminder: Reminder) {
         self.mutableSetValueForKey("reminders").addObject(reminder)
     }

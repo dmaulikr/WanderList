@@ -5,6 +5,8 @@
 //  Created by HaoBoji on 3/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Configuration file
+//
 
 import UIKit
 

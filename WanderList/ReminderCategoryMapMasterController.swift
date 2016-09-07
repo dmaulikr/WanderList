@@ -11,6 +11,20 @@ import MapKit
 
 class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, CategoryListDelegate {
 
+    @IBOutlet var editMode: UIBarButtonItem!
+
+    @IBAction func editAction(sender: UIBarButtonItem) {
+        if (sender.title == "Edit") {
+            sender.title = "Done"
+            self.title = "Edit Categories"
+        } else {
+            sender.title = "Edit"
+            self.title = "Categories"
+        }
+    }
+
+    // Detail view controller
+    var detailViewController: ReminderCategoryDetailController? = nil
     var categories: NSMutableArray?
     var showInModal = false
 
@@ -27,6 +41,11 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             }
             let camera = MKMapCamera(lookingAtCenterCoordinate: lastLocation!.coordinate, fromEyeCoordinate: lastLocation!.coordinate, eyeAltitude: 50000)
             mapView.setCamera(camera, animated: false)
+            // Get detail view controller
+            if let split = self.splitViewController {
+                let controllers = split.viewControllers
+                self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? ReminderCategoryDetailController
+            }
         }
     }
 
@@ -51,11 +70,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
         refresh()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    // Refresh annotations
     func refresh() {
         mapView.removeAnnotations(mapView.annotations)
         categories = DataManager.shared.getCategoryList()
@@ -71,6 +86,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
         }
     }
 
+    // Back to list view
     func navBack(controller: ReminderCategoryMapMasterController) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -84,7 +100,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             if (annotationView == nil) {
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
                 annotationView!.userInteractionEnabled = false
             } else {
                 annotationView!.annotation = annotation
@@ -97,13 +113,22 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
         return nil
     }
 
+    // did click Callout
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if (control == view.rightCalloutAccessoryView) {
+            print("button clicked")
+        }
         if (view.annotation is CategoryAnnotation) {
             let category = (view.annotation as! CategoryAnnotation).category
-            performSegueWithIdentifier("showDetail", sender: category)
+            if (editMode.title == "Edit") {
+                performSegueWithIdentifier("showDetail", sender: category)
+            } else {
+                performSegueWithIdentifier("editCategory", sender: category)
+            }
         }
     }
 
+    // Draw circle around annotation
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if (overlay is CategoryCircle) {
             let overlayRenderer: MKCircleRenderer = MKCircleRenderer(overlay: overlay);
@@ -119,17 +144,22 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
     // MARK: - Segues, Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if (segue.identifier == nil) {
             return
         }
         switch segue.identifier! {
         case "addCategory":
+            // Activate new category dialog
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
             controller.delegate = self
             break
+        case "editCategory":
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CategoryController
+            controller.delegate = self
+            controller.category = sender as? Category
+            break
         case "showDetail":
+            // Manage detail view
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ReminderCategoryDetailController
             controller.category = sender as? Category
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -140,7 +170,7 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
         }
     }
 
-// Annotation
+    // Annotation
     class CategoryAnnotation: MKPointAnnotation {
         var color: UIColor?
         var category: Category? {
@@ -153,7 +183,8 @@ class ReminderCategoryMapMasterController: UIViewController, MKMapViewDelegate, 
             }
         }
     }
-// Annotation radius
+
+    // Annotation radius
     class CategoryCircle: MKCircle {
         var color: UIColor?
         var category: Category?

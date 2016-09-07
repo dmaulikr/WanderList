@@ -5,6 +5,8 @@
 //  Created by HaoBoji on 4/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Master controller for category list
+//
 
 import UIKit
 import CoreData
@@ -14,6 +16,7 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
     var category: Category?
     var reminders: NSMutableArray?
     var dateFormatter: NSDateFormatter = NSDateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
@@ -23,9 +26,31 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // Refresh reminder list
+    func refresh() {
+        reminders = NSMutableArray(array: (category!.reminders!.allObjects as! [Reminder]))
+        // Sort reminders
+        reminders!.sortUsingComparator({ (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
+            let reminder1 = obj1 as! Reminder
+            let reminder2 = obj2 as! Reminder
+            // Check Completion
+            if (reminder1.isCompleted!.boolValue && !reminder2.isCompleted!.boolValue) {
+                return .OrderedDescending
+            }
+            if (!reminder1.isCompleted!.boolValue && reminder2.isCompleted!.boolValue) {
+                return .OrderedAscending
+            }
+            // Check whether due is enabled
+            if (reminder1.dueIsEnabled!.boolValue && !reminder2.dueIsEnabled!.boolValue) {
+                return .OrderedAscending
+            }
+            if (!reminder1.dueIsEnabled!.boolValue && reminder2.dueIsEnabled!.boolValue) {
+                return .OrderedDescending
+            }
+            // Compare due dates
+            return reminder1.dueDate!.compare(reminder2.dueDate!)
+        })
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -89,7 +114,9 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
     // MARK: - Navigation
 
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        // Add reminder
         if (identifier == "addReminder") {
+            // Category must be set
             if (category == nil) {
                 let alert = UIAlertController(title: "Oops", message: "Please select a category before adding a reminder", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -101,8 +128,6 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if (segue.identifier == nil) {
             return
         }
@@ -122,62 +147,4 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
             break
         }
     }
-
-    func refresh() {
-        reminders = NSMutableArray(array: (category!.reminders!.allObjects as! [Reminder]))
-        reminders!.sortUsingComparator({ (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
-            let reminder1 = obj1 as! Reminder
-            let reminder2 = obj2 as! Reminder
-            if (reminder1.isCompleted!.boolValue && !reminder2.isCompleted!.boolValue) {
-                return .OrderedDescending
-            }
-            if (!reminder1.isCompleted!.boolValue && reminder2.isCompleted!.boolValue) {
-                return .OrderedAscending
-            }
-            if (reminder1.dueIsEnabled!.boolValue && !reminder2.dueIsEnabled!.boolValue) {
-                return .OrderedAscending
-            }
-            if (!reminder1.dueIsEnabled!.boolValue && reminder2.dueIsEnabled!.boolValue) {
-                return .OrderedDescending
-            }
-            return reminder1.dueDate!.compare(reminder2.dueDate!)
-        })
-        tableView.reloadData()
-    }
-
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-     }
-     */
-
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-
 }

@@ -12,16 +12,18 @@ import MapKit
 
 class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
 
+    // Detail view controller
     var detailViewController: ReminderCategoryDetailController? = nil
     var categories: NSMutableArray = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Get detail view controller
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? ReminderCategoryDetailController
         }
+        // Set layout mode
         self.splitViewController?.preferredDisplayMode = .AllVisible
         // Table edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -42,23 +44,15 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         // Dispose of any resources that can be recreated.
     }
 
-    // Delegates
+    // MARK: Delegates
+
+    // Refresh table
     func refresh() {
         categories = DataManager.shared.getCategoryList()
         tableView.reloadData()
     }
-    func showDetail(category: Category) {
-        for i in 0..<categories.count {
-            let categoryInTable = categories[i] as! Category
-            if (category.objectID == categoryInTable.objectID) {
 
-                break
-            }
-        }
-        performSegueWithIdentifier("showDetail", sender: self)
-    }
-
-    // MARK: - Segues
+    // MARK: - Navigations
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == nil) {
@@ -78,6 +72,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ReminderCategoryDetailController
                 controller.category = categories[indexPath.row] as? Category
+                // Set nabigation buttons
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -99,6 +94,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath)
+        // Configure cell
         let category = categories[indexPath.row] as! Category
         cell.textLabel?.text = category.title
         cell.textLabel?.textColor = Config.colors[category.color!.integerValue]
@@ -111,6 +107,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         return true
     }
 
+    // Editing mode
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         // Add adite action
         let edit = UITableViewRowAction(style: .Destructive, title: "Edit") { action, index in
@@ -132,6 +129,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
         return true
     }
 
+    // Move categories
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let categoryToMove = categories[sourceIndexPath.row]
         categories.removeObjectAtIndex(sourceIndexPath.row)
