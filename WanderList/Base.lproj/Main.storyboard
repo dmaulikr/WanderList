@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1525" y="-630"/>
         </scene>
-        <!--Acknowledgement-->
+        <!--About-->
         <scene sceneID="Gnv-FD-Co0">
             <objects>
-                <tableViewController title="Acknowledgement" id="Cao-ar-yGm" sceneMemberID="viewController">
+                <tableViewController title="About" id="Cao-ar-yGm" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lk1-8P-XBa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="y4O-rE-xUw"/>
-                        <barButtonItem title="Acknowledgement" id="8tM-ck-lla">
+                        <barButtonItem title="About" id="8tM-ck-lla">
                             <color key="tintColor" red="0.0" green="0.57647058819999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Cao-ar-yGm" kind="show" id="8EB-8d-QB0"/>
@@ -911,9 +911,9 @@
         <image name="New Moon Filled-100" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6S0-TO-JiA"/>
+        <segue reference="xkt-0h-aO9"/>
         <segue reference="A6q-00-YXc"/>
-        <segue reference="Xqg-40-d1X"/>
-        <segue reference="Kxm-z8-ipx"/>
         <segue reference="WUK-rf-f3g"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.57647058823529407" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
