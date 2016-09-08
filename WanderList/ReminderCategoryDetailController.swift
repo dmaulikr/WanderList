@@ -30,6 +30,12 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
     func refresh() {
         reminders = NSMutableArray(array: (category!.reminders!.allObjects as! [Reminder]))
         // Sort reminders
+        sortReminders()
+        tableView.reloadData()
+    }
+
+    // Sort reminder list
+    func sortReminders() {
         reminders!.sortUsingComparator({ (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
             let reminder1 = obj1 as! Reminder
             let reminder2 = obj2 as! Reminder
@@ -50,7 +56,33 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
             // Compare due dates
             return reminder1.dueDate!.compare(reminder2.dueDate!)
         })
-        tableView.reloadData()
+    }
+
+    // Configure cell
+    func configureCell(cell: UITableViewCell, reminder: Reminder) {
+        // Title
+        cell.textLabel?.text = reminder.title
+        // Display due date
+        if (reminder.isCompleted!.boolValue) {
+            cell.detailTextLabel!.text = "Done"
+        } else if (reminder.dueIsEnabled!.boolValue) {
+            cell.detailTextLabel?.text = dateFormatter.stringFromDate(reminder.dueDate!)
+        } else {
+            cell.detailTextLabel?.text = "Todo"
+        }
+        // Change color if overdue
+        if (reminder.dueIsEnabled!.boolValue && reminder.dueDate!.timeIntervalSinceNow < 0) {
+            cell.textLabel?.textColor = UIColor.redColor()
+            cell.detailTextLabel?.textColor = UIColor.redColor()
+        } else {
+            cell.textLabel?.textColor = UIColor.blackColor()
+            cell.detailTextLabel?.textColor = UIColor.grayColor()
+        }
+        // Change color if complete
+        if (reminder.isCompleted!.boolValue) {
+            cell.textLabel?.textColor = UIColor.grayColor()
+            cell.detailTextLabel?.textColor = UIColor.grayColor()
+        }
     }
 
     // MARK: - Table view data source
@@ -70,28 +102,7 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath)
         // Configure the cell...
         let reminder = reminders![indexPath.row] as! Reminder
-        cell.textLabel?.text = reminder.title
-        // Display due date
-        if (reminder.isCompleted!.boolValue) {
-            cell.detailTextLabel!.text = ""
-        } else if (reminder.dueIsEnabled!.boolValue) {
-            cell.detailTextLabel?.text = dateFormatter.stringFromDate(reminder.dueDate!)
-        } else {
-            cell.detailTextLabel?.text = "N/A"
-        }
-        // Change color if overdue
-        if (reminder.dueIsEnabled!.boolValue && reminder.dueDate!.timeIntervalSinceNow < 0) {
-            cell.textLabel?.textColor = UIColor.redColor()
-            cell.detailTextLabel?.textColor = UIColor.redColor()
-        } else {
-            cell.textLabel?.textColor = UIColor.blackColor()
-            cell.detailTextLabel?.textColor = UIColor.grayColor()
-        }
-        // Change color if complete
-        if (reminder.isCompleted!.boolValue) {
-            cell.textLabel?.textColor = UIColor.grayColor()
-            cell.detailTextLabel?.textColor = UIColor.grayColor()
-        }
+        configureCell(cell, reminder: reminder)
         return cell
     }
 
@@ -108,7 +119,32 @@ class ReminderCategoryDetailController: UITableViewController, ReminderListDeleg
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         delete.backgroundColor = UIColor.redColor()
-        return [delete]
+        // Add mark action
+        let reminder = reminders![indexPath.row] as! Reminder
+        let title: String
+        if (reminder.isCompleted!.boolValue) {
+            title = "Mark Todo"
+        } else {
+            title = "Mark Done"
+        }
+        let mark = UITableViewRowAction(style: .Destructive, title: title) { action, index in
+            // Close swipe view
+            tableView.setEditing(false, animated: true)
+            // Save action result
+            reminder.isCompleted = !(reminder.isCompleted!.boolValue)
+            DataManager.shared.saveContext()
+            // Configure appearance of this cell
+            let cell = tableView.cellForRowAtIndexPath(indexPath)!
+            self.configureCell(cell, reminder: reminder)
+            // Reorder reminders
+            self.sortReminders()
+            // Move reminder
+            let targetRow = self.reminders!.indexOfObject(reminder)
+            let targetIndexPath = NSIndexPath(forRow: targetRow, inSection: 0)
+            tableView.moveRowAtIndexPath(indexPath, toIndexPath: targetIndexPath)
+        }
+        mark.backgroundColor = UIColor.blueColor()
+        return [delete, mark]
     }
 
     // MARK: - Navigation
