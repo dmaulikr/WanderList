@@ -16,6 +16,38 @@ class NotificationManager: NSObject {
     static let shared = NotificationManager()
     var lastLocation: CLLocation?
 
+    // Schedule time based notification
+    func rescheduleReminders() {
+        // Clear up notifications
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let reminders = DataManager.shared.getReminderList()
+        for item in reminders {
+            let reminder = item as! Reminder
+            // Notification is not enabled
+            if (!(reminder.dueIsEnabled!.boolValue)) {
+                continue
+            }
+            // Overdue
+            if (reminder.dueDate!.timeIntervalSinceNow < 0) {
+                continue
+            }
+            // Done
+            if (reminder.isCompleted!.boolValue) {
+                continue
+            }
+            // Schedule notification
+            let notification = UILocalNotification()
+            var body: String = "Things to do in " + reminder.category!.title! + ":\n"
+            body += reminder.title!
+            notification.alertTitle = reminder.title
+            notification.alertBody = body
+            notification.alertAction = "Show"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.fireDate = reminder.dueDate!
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
+    }
+
     // Recieve location updates
     func didUpdateLocation(currentLocation: CLLocation) {
         if (lastLocation == nil) {

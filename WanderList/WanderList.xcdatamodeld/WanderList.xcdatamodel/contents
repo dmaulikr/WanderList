@@ -17,7 +17,7 @@
         <attribute name="dueDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dueIsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="reminders" inverseEntity="Category" syncable="YES"/>
     </entity>
