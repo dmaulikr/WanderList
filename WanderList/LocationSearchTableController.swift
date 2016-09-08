@@ -41,7 +41,7 @@ class LocationSearchTableController: UITableViewController, UISearchResultsUpdat
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         let selectedItem = matchingItems[indexPath.row].placemark
         cell.textLabel?.text = selectedItem.name
-        cell.detailTextLabel?.text = parseAddress(selectedItem)
+        cell.detailTextLabel?.text = LocationManager.shared.parseAddress(selectedItem)
         return cell
     }
 
@@ -78,26 +78,6 @@ class LocationSearchTableController: UITableViewController, UISearchResultsUpdat
             self.matchingItems = response.mapItems
             self.tableView.reloadData()
         }
-    }
-
-    // Adapted from https://www.thorntech.com/2016/01/how-to-search-for-location-using-apples-mapkit/
-    func parseAddress(selectedItem: MKPlacemark) -> String {
-        // put a space between "4" and "Melrose Place"
-        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
-        // put a comma between street and city/state
-        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        let addressLine = String(
-            format: "%@%@%@%@%@",
-            // street number
-            selectedItem.subThoroughfare ?? "",
-            firstSpace,
-            // street name
-            selectedItem.thoroughfare ?? "",
-            comma,
-            // city
-            selectedItem.locality ?? ""
-        )
-        return addressLine
     }
 
 }

@@ -13,7 +13,7 @@ protocol LocationPickDelegate {
     func didPickLocation(controller: MapPickController)
 }
 
-class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
+class MapPickController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, HandleMapSearch {
 
     @IBOutlet var mapView: MKMapView!
     // Search bar
@@ -36,6 +36,7 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
         // Set camera
         camera = MKMapCamera(lookingAtCenterCoordinate: lastLocation!.coordinate, fromEyeCoordinate: lastLocation!.coordinate, eyeAltitude: 50000)
         mapView.setCamera(camera, animated: false)
+
         // Search result list under serach bar
         let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTableController
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -52,13 +53,35 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
 
+        // Set long tap to add annotation
+        let longTapRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longTapHandler(_:)))
+        longTapRecognizer.delegate = self
+        mapView.addGestureRecognizer(longTapRecognizer)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // Long tap to add annotation
+    func longTapHandler(gestureReconizer: UITapGestureRecognizer) {
+        if (gestureReconizer.state != .Began) {
+            return
+        }
+        let tapPosition = gestureReconizer.locationInView(mapView)
+        let tapCoordinate = mapView.convertPoint(tapPosition, toCoordinateFromView: mapView)
+        let tapLocation = CLLocation(latitude: tapCoordinate.latitude, longitude: tapCoordinate.longitude)
+        // Parse coordinate to address
+        CLGeocoder().reverseGeocodeLocation(tapLocation) { (placemarks, error) in
+            var address = "Unknow Place"
+            if (error == nil && placemarks!.count > 0) {
+                address = LocationManager.shared.parseAddress(placemarks![0])
+            }
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = tapCoordinate
+            annotation.title = "Dropped Pin"
+            annotation.subtitle = address
+            self.addAnnotation(annotation)
+        }
     }
 
+    // Add annotation to map
     func addAnnotation(annotation: MKPointAnnotation) {
         // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
@@ -66,6 +89,7 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
         mapView.selectAnnotation(annotation, animated: true)
     }
 
+    // Add annotation from search result
     func addAnnotationFromSearch(annotation: MKPointAnnotation) {
         addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
@@ -82,6 +106,7 @@ class MapPickController: UIViewController, MKMapViewDelegate, HandleMapSearch {
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView?.animatesDrop = true
         pinView?.canShowCallout = true
         pinView?.rightCalloutAccessoryView = UIButton(type: .ContactAdd)
         return pinView
