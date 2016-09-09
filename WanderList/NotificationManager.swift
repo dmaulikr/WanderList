@@ -15,6 +15,7 @@ class NotificationManager: NSObject {
 
     static let shared = NotificationManager()
     var lastLocation: CLLocation?
+    var delegate: AlertDelegate?
 
     // Schedule time based notification
     func rescheduleReminders() {
@@ -110,11 +111,18 @@ class NotificationManager: NSObject {
         for i in 1..<remindersToNotify.count {
             body += "\n" + remindersToNotify[i].title!
         }
-        notification.alertTitle = category.title
-        notification.alertBody = body
-        notification.alertAction = "Show"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.fireDate = NSDate()
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        if (UIApplication.sharedApplication().applicationState == .Active) {
+            let alert = UIAlertController(title: category.title, message: body, preferredStyle: .Alert)
+            let action = UIAlertAction(title: "Close", style: .Default, handler: nil)
+            alert.addAction(action)
+            delegate?.presentAlert(alert)
+        } else {
+            notification.alertTitle = category.title
+            notification.alertBody = body
+            notification.alertAction = "Show"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.fireDate = NSDate()
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
 }

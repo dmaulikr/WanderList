@@ -5,12 +5,18 @@
 //  Created by HaoBoji on 29/08/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Category list
+//
 
 import UIKit
 import CoreData
 import MapKit
 
-class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate {
+protocol AlertDelegate {
+    func presentAlert(alert: UIAlertController)
+}
+
+class ReminderCategoryMasterController: UITableViewController, CategoryListDelegate, AlertDelegate {
 
     // Detail view controller
     var detailViewController: ReminderCategoryDetailController? = nil
@@ -18,6 +24,7 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationManager.shared.delegate = self
         // Get detail view controller
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -139,6 +146,13 @@ class ReminderCategoryMasterController: UITableViewController, CategoryListDeleg
             category.order = i
         }
         DataManager.shared.saveContext()
+    }
+
+    // Present alert
+    func presentAlert(alert: UIAlertController) {
+        self.presentViewController(alert, animated: true, completion: {
+
+        })
     }
 }
 

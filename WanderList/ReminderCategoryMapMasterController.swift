@@ -5,6 +5,8 @@
 //  Created by HaoBoji on 6/09/2016.
 //  Copyright © 2016 HaoBoji. All rights reserved.
 //
+//  Mapview for category list
+//
 
 import UIKit
 import MapKit
