@@ -63,11 +63,11 @@ class MapPickController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     }
 
     // Long tap to add annotation
-    func longTapHandler(gestureReconizer: UITapGestureRecognizer) {
-        if (gestureReconizer.state != .Began) {
+    func longTapHandler(gestureRecognizer: UITapGestureRecognizer) {
+        if (gestureRecognizer.state != .Began) {
             return
         }
-        let tapPosition = gestureReconizer.locationInView(mapView)
+        let tapPosition = gestureRecognizer.locationInView(mapView)
         let tapCoordinate = mapView.convertPoint(tapPosition, toCoordinateFromView: mapView)
         let tapLocation = CLLocation(latitude: tapCoordinate.latitude, longitude: tapCoordinate.longitude)
         // Parse coordinate to address
